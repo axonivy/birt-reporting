@@ -1,0 +1,8 @@
+Data #class
+birtextensiontest #namespace
+reportParas java.util.HashMap #field
+reportParas PERSISTENT #fieldModifier
+resultFile File #field
+resultFile PERSISTENT #fieldModifier
+reportUrl String #field
+reportUrl PERSISTENT #fieldModifier

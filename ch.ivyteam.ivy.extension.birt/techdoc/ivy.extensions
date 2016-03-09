@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<extensionPoints>
+    <extensionPoint interface="ch.ivyteam.ivy.security.IExternalSecuritySystemProvider" bundle="ch.ivyteam.ivy.security">
+        <extension bundle="ch.ivyteam.ivy.security" class="ch.ivyteam.ivy.security.internal.ivy.IvySecuritySystemProvider"/>
+        <extension bundle="ch.ivyteam.ivy.security" class="ch.ivyteam.ivy.security.internal.ads.MicrosoftActiveDirectorySecuritySystemProvider"/>
+        <extension bundle="ch.ivyteam.ivy.security" class="ch.ivyteam.ivy.security.internal.nds.NovellDirectoryServiceSecuritySystemProvider"/>
+    </extensionPoint>
+   <extensionPoint interface="ch.ivyteam.ivy.server.IServerExtension" bundle="ch.ivyteam.ivy.extension.birt">
+      <extension  bundle="ch.ivyteam.ivy.extension.birt" class="ch.ivyteam.ivy.extension.birt.BirtEngine"/>
+   </extensionPoint>
+   
+   <extensionPoint interface="ch.ivyteam.ivy.java.IIvyProjectClassPathExtension" bundle="ch.ivyteam.ivy.extension.birt">
+      <extension  bundle="ch.ivyteam.ivy.extension.birt" class="ch.ivyteam.ivy.extension.birt.BirtProjectClassPathExtension"/>
+   </extensionPoint>
+   
+   <extensionPoint interface="ch.ivyteam.ivy.designer.process.ui.IIvyProcessPaletteExtension" bundle="ch.ivyteam.ivy.extension.birt">
+      <extension  bundle="ch.ivyteam.ivy.extension.birt" class="ch.ivyteam.ivy.extension.birt.process.element.BirtProcessPalette"/>
+   </extensionPoint>
+   
+   <extensionPoint interface="ch.ivyteam.ivy.process.element.IExtensibleStandardProcessElementExtension" bundle="ch.ivyteam.ivy.extension.birt">
+      <extension  bundle="ch.ivyteam.ivy.extension.birt" class="ch.ivyteam.ivy.extension.birt.process.element.BirtProcessElements"/>
+   </extensionPoint>
+   
+   <extensionPoint interface="ch.ivyteam.ivy.designer.process.ui.IProcessElementUiInformationExtension" bundle="ch.ivyteam.ivy.extension.birt">
+      <extension  bundle="ch.ivyteam.ivy.extension.birt" class="ch.ivyteam.ivy.extension.birt.process.element.BirtProcessElementUiInformation"/>
+   </extensionPoint>
+   
+</extensionPoints>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="ch.ivyteam.ivy.server.IServerExtension">
+      <ivyServerExtension
+            class="ch.ivyteam.ivy.extension.birt.BirtEngine">
+      </ivyServerExtension>
+   </extension>
+   <extension
+         point="ch.ivyteam.ivy.java.IIvyProjectClassPathExtension">
+      <ivyProjectClassPathExtension
+            class="ch.ivyteam.ivy.extension.birt.BirtProjectClassPathExtension">
+      </ivyProjectClassPathExtension>
+   </extension>
+   <extension
+         point="ch.ivyteam.ivy.designer.process.ui.IIvyProcessPaletteExtension">
+      <ivyProcessPaletteExtension
+            class="ch.ivyteam.ivy.extension.birt.process.element.BirtProcessPalette">
+      </ivyProcessPaletteExtension>
+   </extension>
+   <extension
+         point="ch.ivyteam.ivy.process.element.IExtensibleStandardProcessElementExtension">
+      <extensibleStandardProcessElementExtension
+            class="ch.ivyteam.ivy.extension.birt.process.element.BirtProcessElements">
+      </extensibleStandardProcessElementExtension>
+   </extension>
+   <extension
+         point="ch.ivyteam.ivy.designer.process.ui.IProcessElementUiInformationExtension">
+      <processElementUiInformationExtension
+            class="ch.ivyteam.ivy.extension.birt.process.element.BirtProcessElementUiInformation">
+      </processElementUiInformationExtension>
+   </extension>
+
+</plugin>

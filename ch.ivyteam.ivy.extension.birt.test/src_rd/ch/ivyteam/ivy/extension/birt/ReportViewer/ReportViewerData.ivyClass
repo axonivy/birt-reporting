@@ -1,0 +1,6 @@
+ReportViewerData #class
+ch.ivyteam.ivy.extension.birt.ReportViewer #namespace
+reportUrl String #field
+reportUrl PERSISTENT #fieldModifier
+openExternalBrowser Boolean #field
+openExternalBrowser PERSISTENT #fieldModifier

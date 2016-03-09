@@ -1,0 +1,103 @@
+# Conversion log for project 'BirtExtensionTest' from version 7 to 50000
+# Created on 01.05.2013 13:54:57
+01.05.2013 13:54:58 : New Task  : Converting configurations:
+01.05.2013 13:54:58 : Info      : Adding cell widget configurations (without default configurations)...
+01.05.2013 13:54:58 : Info      : Added RTextFieldCellWidget configuration.
+01.05.2013 13:54:58 : Info      : Added RComboBoxCellWidget configuration.
+01.05.2013 13:54:58 : Info      : Converting configuration classes...
+01.05.2013 13:54:58 : Info      : Fixed 'GlobalVariables' configuration class data (was inconsistent).
+01.05.2013 13:54:58 : Info      : Converted /BooleanFormat.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle.
+01.05.2013 13:54:58 : Info      : Converted /DateFormat.
+01.05.2013 13:54:58 : Info      : Converted /DateTimeFormat.
+01.05.2013 13:54:58 : Info      : Converted /DateTimeWidgetValidation.
+01.05.2013 13:54:58 : Info      : Converted /DateWidgetValidation.
+01.05.2013 13:54:58 : Info      : Converted /Environments.
+01.05.2013 13:54:58 : Info      : Converted /GlobalVariables.
+01.05.2013 13:54:58 : Info      : Converted /NumberFormat.
+01.05.2013 13:54:58 : Info      : Converted /NumberWidgetValidation.
+01.05.2013 13:54:58 : Info      : Converted /PercentWidgetValidation.
+01.05.2013 13:54:58 : Info      : Converted /RegexWidgetValidation.
+01.05.2013 13:54:58 : Info      : Converted /RichDialogWindowTypes.
+01.05.2013 13:54:58 : Info      : Converted /StringFormat.
+01.05.2013 13:54:58 : Info      : Converted /TimeFormat.
+01.05.2013 13:54:58 : Info      : Converted /TimeWidgetValidation.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RButton.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RCheckBox.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RCheckBoxMenuItem.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RComboBox.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RComboBoxCellWidget.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RDatePicker.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RFiller.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RHtmlPane.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RHyperlink.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RLabel.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RList.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RLookupTextField.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RMenuItem.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RPasswordField.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RProgressBar.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RRadioButton.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RRadioButtonMenuItem.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RScrollBar.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RSlider.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RTable.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RTableCell.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RTableTree.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RTextArea.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RTextField.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RTextFieldCellWidget.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RToggleButton.
+01.05.2013 13:54:58 : Info      : Converted /ComponentStyle/RTree.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RBorderLayoutPane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RBoxLayoutPane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RBoxPane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RCardPane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RCollapsiblePane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RFlowLayoutPane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RGridBagLayoutPane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RGridLayoutPane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RScrollPane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RSplitPane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RTabbedPane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RTaskPane.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RTaskPaneContainer.
+01.05.2013 13:54:58 : Info      : Converted /ContainerStyle/RToolBar.
+01.05.2013 13:54:58 : Info      : Successfully converted 58 configuration classes.
+01.05.2013 13:54:58 : Info      : Clearing configuration cache...
+01.05.2013 13:54:58 : Info      : Converted configurations successfully.
+01.05.2013 13:54:58 : New Task  : Reexporting Xpert.ivy Libraries class path container ...
+01.05.2013 13:54:59 : New Task  : Converting RichDialog panels...
+01.05.2013 13:54:59 : Info      : No panels found that needed to be converted.
+01.05.2013 13:54:59 : New Task  : Creating initial override configuration...
+01.05.2013 13:54:59 : Info      : Override data model created.
+01.05.2013 13:54:59 : New Task  : Extending Xpert.ivy resources...
+01.05.2013 13:54:59 : New Task  : Checking if project default data class and namespace are set...
+01.05.2013 13:54:59 : Info      : Default namespace already defined.
+01.05.2013 13:54:59 : Info      : Default data class already defined.
+01.05.2013 13:54:59 : New Task  : Converting processes:
+01.05.2013 13:54:59 : Info      : Set default type on process: processes/Business Processes/TestReportPreview.mod
+01.05.2013 13:54:59 : Info      : Set default type on process: processes/Business Processes/TestReportGeneration.mod
+01.05.2013 13:54:59 : Info      : Process type update completed successfully.
+01.05.2013 13:54:59 : New Task  : Converting configurations:
+01.05.2013 13:54:59 : Info      : Adding smart table default configuration ...
+01.05.2013 13:54:59 : Info      : Clearing configuration classes cache...
+01.05.2013 13:54:59 : Info      : Converted configurations successfully.
+01.05.2013 13:54:59 : New Task  : Asserting default deployment descriptor...
+01.05.2013 13:54:59 : Info      : Default deployment descriptor (library.libraryconfig) added.
+01.05.2013 13:54:59 : New Task  : Asserting web content folder...
+01.05.2013 13:54:59 : Info      : Web content folder exists already, no conversion needed.
+01.05.2013 13:54:59 : New Task  : Checking if project default data class and namespace are set...
+01.05.2013 13:54:59 : Info      : Default namespace already defined.
+01.05.2013 13:54:59 : Info      : Default data class already defined.
+01.05.2013 13:54:59 : New Task  : Converting CallSub elements.
+01.05.2013 13:54:59 : New Task  : Converting StartSub elements.
+01.05.2013 13:54:59 : New Task  : Adding the Web Application Library to the Project ...
+01.05.2013 13:54:59 : New Task  : Adding the faceted project nature to the project ...
+01.05.2013 13:54:59 : New Task  : Adding the JSF facet to the project...
+01.05.2013 13:55:00 : New Task  : Convert Html Dialog logic kind ...
+01.05.2013 13:55:00 : New Task  : Adding html dialog base folder: src_hd ...
+01.05.2013 13:55:00 : New Task  : Update Html Dialog base folder on project classpath ...
+01.05.2013 13:55:00 : New Task  : Update project version to actual version 50000.
+01.05.2013 13:55:00 : New Task  : Finished conversion of project BirtExtensionTest.

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="lib/log4j-1.2.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/chartengineapi.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/chartitemapi.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/com.ibm.icu_4.0.1.v20090822.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-cli-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/coreapi.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/crosstabcoreapi.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/dataadapterapi.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/dataaggregationapi.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/dataextraction.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/dteapi.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/emitterconfig.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/engineapi.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flute.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/js.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/modelapi.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/modelodaapi.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/odadesignapi.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.apache.commons.codec_1.3.0.v20080530-1600.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.emf.common_2.5.0.v200906151043.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.emf.ecore_2.5.0.v200906151043.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.emf.ecore.xmi_2.5.0.v200906151043.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.w3c.css.sac_1.3.0.v200805290154.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/scriptapi.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

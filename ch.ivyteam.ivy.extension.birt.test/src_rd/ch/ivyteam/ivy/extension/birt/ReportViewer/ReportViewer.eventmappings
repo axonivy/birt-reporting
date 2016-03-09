@@ -1,0 +1,6 @@
+# Xpert.ivy RichDialog Event-Mapping Data
+# 2010-02-19 07:41:35 | 4.1.1.29621 | 1.0
+~@RD_METHODCALL[start()]--->ch.ivyteam.ivy.process.ProcessStart:126E4E30038584D5/126E4E30047A3E53
+~@RD_METHODCALL[showReportInExternalBrowser(String)]--->ch.ivyteam.ivy.process.ProcessStart:126E4E30038584D5/126E4F2128E5BE33
+~@RD_METHODCALL[showReport(String)]--->ch.ivyteam.ivy.process.ProcessStart:126E4E30038584D5/126E4E4A4EFB76FF
+~@DISPLAY[LOAD]--->ch.ivyteam.ivy.process.ProcessStart:126E4E30038584D5/126E4F560804C0F5 # ReportViewerProcess.mod/onLoad
