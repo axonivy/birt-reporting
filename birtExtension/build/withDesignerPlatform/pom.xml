@@ -1,0 +1,159 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.axonivy.ivy.supplements</groupId>
+	<artifactId>birt-extension-with-designer-platform</artifactId>
+	<packaging>pom</packaging>
+
+	<description>Technical build helper project to provide a p2 repository to build the birtExtension plugin:
+1. downloads an AxonIvyDesigner from an online resource
+2. unpacks the designer plugins+features
+3. build a p2 repository out of the designer plugins+features
+4. shares the platform over http via jetty
+5. RUNS THE REAL PLUGIN BUILD of the birtExtension
+6. stops the jetty</description>
+
+	<parent>
+		<groupId>com.axonivy.ivy.supplements</groupId>
+		<artifactId>birt-extension-modules</artifactId>
+		<version>6.1.0-SNAPSHOT</version>
+		<relativePath>../../..</relativePath>
+	</parent>
+
+	<properties>
+		<designer.download.url>http://developer.axonivy.com/download/</designer.download.url>
+		<designer.download.arch>win32\.win32\.x86_64</designer.download.arch>
+		<product.dir>${project.build.directory}/designer</product.dir>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>download.designer.as.target.platform.provider</id>
+						<phase>process-resources</phase>
+						<goals><goal>run</goal></goals>
+						<configuration>
+							<target>
+								<get src="${designer.download.url}"
+									dest="${project.build.directory}/designer-download.html" />
+								<loadfile property="designer.download.html" 
+									srcFile="${project.build.directory}/designer-download.html"/>
+								
+								<taskdef resource="net/sf/antcontrib/antlib.xml"/>
+								<property name="pattern">href=\"([^\"]*AxonIvyDesigner${ivy.version}[^\"]*${designer.download.arch}[^\"]*)\"</property>
+								<propertyregex property="designer.packed"
+					              input="${designer.download.html}"
+					              regexp="${pattern}"
+					              select="\1"
+					              casesensitive="false" />	
+									
+								<echo>found: ${designer.packed}</echo>
+								<get src="${designer.download.url}/${designer.packed}"
+									dest="${project.build.directory}/designer.zip" />
+								<unzip src="${project.build.directory}/designer.zip"
+									 dest="${product.dir}">
+									<patternset>
+										<include name="plugins/**/*" />
+										<include name="features/**/*" />
+									</patternset>
+								</unzip>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>ant-contrib</groupId>
+						<artifactId>ant-contrib</artifactId>
+						<version>1.0b3</version>
+						<exclusions>
+							<exclusion>
+								<groupId>ant</groupId>
+								<artifactId>ant</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+                <groupId>org.eclipse.tycho.extras</groupId>
+                <artifactId>tycho-p2-extras-plugin</artifactId>
+                <version>${tycho.version}</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals><goal>publish-features-and-bundles</goal></goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <compress>false</compress>
+                    <metadataRepositoryLocation>${product.dir}</metadataRepositoryLocation>
+                    <artifactRepositoryLocation>${product.dir}</artifactRepositoryLocation>
+                    <sourceLocation>${product.dir}</sourceLocation>
+                    <publishArtifacts>true</publishArtifacts>
+                    <append>true</append>
+                </configuration>
+            </plugin>
+            
+            
+            
+            <plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.3.0.v20150612</version>
+				<configuration>
+					<stopKey>foo</stopKey>
+					<stopPort>9999</stopPort>
+					<webAppSourceDirectory>${product.dir}</webAppSourceDirectory>
+					<webApp>
+						<contextPath>/site</contextPath>
+					</webApp>
+				</configuration>
+				<executions>
+					<execution>
+						<id>start-jetty</id>
+						<phase>pre-integration-test</phase>
+						<goals><goal>start</goal></goals>
+						<configuration>
+							<daemon>false</daemon>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-jetty</id>
+						<phase>post-integration-test</phase>
+						<goals><goal>stop</goal></goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-invoker-plugin</artifactId>
+				<version>2.0.0</version>
+				<executions>
+					<execution>
+						<id>run.plugin.build.birt.extension</id>
+						<goals><goal>integration-test</goal></goals>
+						<phase>integration-test</phase>
+						<configuration>
+							<pom>../../pom.xml</pom>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>s
+					<streamLogs>true</streamLogs>
+					<goals>
+						<goal>clean</goal>
+						<goal>package</goal>
+					</goals>
+					<showErrors>true</showErrors>
+					<reportsDirectory>${java.io.tmpdir}</reportsDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
