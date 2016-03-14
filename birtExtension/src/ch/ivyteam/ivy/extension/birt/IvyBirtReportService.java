@@ -112,9 +112,6 @@ public class IvyBirtReportService
   {
     try
     {
-      // fix IllegalStateException while generating HTML task. See https://www.eclipse.org/forums/index.php/t/545694/
-      System.setSecurityManager(null);
-    	
       IRunAndRenderTask task = engine.createRunAndRenderTask(design);
       if (parameters != null)
       {
