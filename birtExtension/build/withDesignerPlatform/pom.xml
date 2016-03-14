@@ -140,10 +140,11 @@
 						<phase>integration-test</phase>
 						<configuration>
 							<pom>../../pom.xml</pom>
+							<goals><goal>clean install</goal></goals>
 						</configuration>
 					</execution>
 				</executions>
-				<configuration>s
+				<configuration>
 					<streamLogs>true</streamLogs>
 					<goals>
 						<goal>clean</goal>

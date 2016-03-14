@@ -6,3 +6,5 @@ resultFile File #field
 resultFile PERSISTENT #fieldModifier
 reportUrl String #field
 reportUrl PERSISTENT #fieldModifier
+reportFormat ch.ivyteam.ivy.extension.birt.OutputFormat #field
+reportFormat PERSISTENT #fieldModifier

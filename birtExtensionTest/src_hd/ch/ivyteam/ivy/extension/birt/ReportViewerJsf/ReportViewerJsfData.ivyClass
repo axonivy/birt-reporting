@@ -1,0 +1,4 @@
+ReportViewerJsfData #class
+ch.ivyteam.ivy.extension.birt.ReportViewerJsf #namespace
+reportUrl String #field
+reportUrl PERSISTENT #fieldModifier

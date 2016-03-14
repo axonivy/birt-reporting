@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
-    <startMethod>
-        <name>showReport</name>
-        <description></description>
-        <inputParameter>
-            <name>reportUrl</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </startMethod>
+    <autoScreenshot>true</autoScreenshot>
     <startMethod>
         <name>start</name>
-        <description>Default Rich Dialog start
-This method can not be changed or deleted!</description>
-    </startMethod>
-    <startMethod>
-        <name>showReportInExternalBrowser</name>
-        <description></description>
+        <description>Default dialog start method.</description>
         <inputParameter>
             <name>reportUrl</name>
             <description></description>
@@ -27,7 +13,7 @@ This method can not be changed or deleted!</description>
     </startMethod>
     <property>
         <name>guid</name>
-        <value>126E4E3003835322</value>
+        <value>1536499CB1C78EA8</value>
         <readOnly>true</readOnly>
     </property>
     <property>
@@ -38,6 +24,11 @@ This method can not be changed or deleted!</description>
     <property>
         <name>binary</name>
         <value>false</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>viewTechnology</name>
+        <value>JSF</value>
         <readOnly>true</readOnly>
     </property>
 </richDialogDescriptor>

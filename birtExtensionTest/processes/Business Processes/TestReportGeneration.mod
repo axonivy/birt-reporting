@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed May 01 13:54:59 CEST 2013]
-1267039BBFA83D05 3.17 #module
+[>Created: Fri Mar 11 08:53:29 CET 2016]
+1267039BBFA83D05 3.18 #module
 >Proto >Proto Collection #zClass
 Tn0 TestReportGeneration Big #zClass
 Tn0 B #cInfo
@@ -22,57 +22,44 @@ Tn0 @PushWFArc f6 '' #zField
 Tn0 @PushWFArc f4 '' #zField
 Tn0 @InfoButton f7 '' #zField
 >Proto Tn0 Tn0 TestReportGeneration #zField
-Tn0 f0 outLink start1.ivp #txt
+Tn0 f0 outLink pdf.ivp #txt
 Tn0 f0 type birtextensiontest.Data #txt
-Tn0 f0 actionDecl 'birtextensiontest.Data out;' #txt
+Tn0 f0 actionDecl 'birtextensiontest.Data out;
+' #txt
 Tn0 f0 requestEnabled true #txt
 Tn0 f0 triggerEnabled false #txt
-Tn0 f0 callSignature start1() #txt
-Tn0 f0 startName 'Test BIRT Extension' #txt
-Tn0 f0 taskData '#
-#Wed May 01 13:54:27 CEST 2013
+Tn0 f0 callSignature pdf() #txt
+Tn0 f0 persist false #txt
+Tn0 f0 startName 'Test BIRT Extension (PDF)' #txt
+Tn0 f0 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
 .DESC=
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
 .NAM=Test BIRT Extension
-' #txt
-Tn0 f0 caseData '#
-#Wed Jan 27 17:46:21 CET 2010
-businessMilestone.timestamp=
-subType.code=
-mainContact.id=
-mainContact.name=
-processCategory.name=
-businessPriority=
-processCategory.code=
-mainContact.docDb.code=
-mainContact.type=
-businessObject.folder.id=
-businessObject.docDb.code=
-process.name=
-businessCreator.user=
-businessStart.timestamp=
-process.code=
-type.name=
-businessObject.name=
-type.code=
-businessObject.code=
-correspondent.id=
-case.name=
-mainContact.folder.id=
-subType.name=
-case.description=
-' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Tn0 f0 showInStartList 1 #txt
+Tn0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
+ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
+import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
+DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
+taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
+taskUpdDef.setExpiryActivator("Everybody");
+taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
+engine.updateCurrentTask(taskUpdDef);
+' #txt
 Tn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start1</name>
-        <nameStyle>6,5,7,9
+        <name>pdf</name>
+        <nameStyle>3,5,7,9
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
 Tn0 f0 @C|.responsibility Everybody #txt
-Tn0 f0 219 51 26 26 14 0 #rect
+Tn0 f0 67 75 26 26 14 0 #rect
 Tn0 f0 @|StartRequestIcon #fIcon
 Tn0 f1 actionDecl 'birtextensiontest.Data out;
 ' #txt
@@ -92,7 +79,7 @@ and Result File</name>
     </language>
 </elementInfo>
 ' #txt
-Tn0 f1 214 108 36 24 20 -13 #rect
+Tn0 f1 62 132 36 24 20 -13 #rect
 Tn0 f1 @|StepIcon #fIcon
 Tn0 f2 @AbstractThirdPartyProgramInterface|type birtextensiontest.Data #txt
 Tn0 f2 @AbstractThirdPartyProgramInterface|timeout 0 #txt
@@ -108,17 +95,17 @@ Result File</name>
     </language>
 </elementInfo>
 ' #txt
-Tn0 f2 214 180 36 24 20 -2 #rect
+Tn0 f2 62 204 36 24 20 -2 #rect
 Tn0 f2 @|CreateReportDialog #fIcon
 Tn0 f3 type birtextensiontest.Data #txt
-Tn0 f3 219 243 26 26 14 0 #rect
+Tn0 f3 67 267 26 26 14 0 #rect
 Tn0 f3 @|EndIcon #fIcon
 Tn0 f5 expr out #txt
-Tn0 f5 232 132 232 180 #arcP
+Tn0 f5 80 156 80 204 #arcP
 Tn0 f6 expr out #txt
-Tn0 f6 232 204 232 243 #arcP
+Tn0 f6 80 228 80 267 #arcP
 Tn0 f4 expr out #txt
-Tn0 f4 232 77 232 108 #arcP
+Tn0 f4 80 101 80 132 #arcP
 Tn0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -126,13 +113,13 @@ Tn0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 The result file will be saved in your Designer 
 location under
-files/application/TestReport.pdf</name>
-        <nameStyle>128,9
+files/application/TestReport.pdf/.html</name>
+        <nameStyle>134,7,9
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Tn0 f7 345 75 254 90 -122 -40 #rect
+Tn0 f7 24 330 256 92 -122 -40 #rect
 Tn0 f7 @|IBIcon #fIcon
 Tn0 f7 -14336|-1|-16777216 #nodeStyle
 >Proto Tn0 .type birtextensiontest.Data #txt
@@ -143,7 +130,7 @@ Tn0 f7 -14336|-1|-16777216 #nodeStyle
         <swimlaneLabel>Report Generation</swimlaneLabel>
         <swimlaneLabel></swimlaneLabel>
     </language>
-    <swimlaneSize>502</swimlaneSize>
+    <swimlaneSize>464</swimlaneSize>
     <swimlaneColor>-6710785</swimlaneColor>
 </elementInfo>
 ' #txt

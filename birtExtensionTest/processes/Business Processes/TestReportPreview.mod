@@ -1,6 +1,6 @@
 [Ivy]
-[>Created: Wed May 01 13:54:59 CEST 2013]
-126E4DD03DE98401 3.17 #module
+[>Created: Fri Mar 11 10:04:23 CET 2016]
+126E4DD03DE98401 3.18 #module
 >Proto >Proto Collection #zClass
 Tw0 TestReportPreview Big #zClass
 Tw0 B #cInfo
@@ -32,134 +32,113 @@ Tw0 @PushWFArc f15 '' #zField
 Tw0 @EndTask f17 '' #zField
 Tw0 @PushWFArc f18 '' #zField
 Tw0 @PushWFArc f16 '' #zField
+Tw0 @StartRequest f19 '' #zField
+Tw0 @PushWFArc f20 '' #zField
 >Proto Tw0 Tw0 TestReportPreview #zField
 Tw0 f0 outLink start1.ivp #txt
 Tw0 f0 type birtextensiontest.Data #txt
-Tw0 f0 actionDecl 'birtextensiontest.Data out;' #txt
+Tw0 f0 inParamTable 'out.reportFormat=ch.ivyteam.ivy.extension.birt.OutputFormat.PDF;
+out.resultFile=new File("Testbericht.pdf");
+' #txt
+Tw0 f0 actionDecl 'birtextensiontest.Data out;
+' #txt
 Tw0 f0 requestEnabled true #txt
 Tw0 f0 triggerEnabled false #txt
 Tw0 f0 callSignature start1() #txt
-Tw0 f0 startName 'Preview persisent Reports' #txt
-Tw0 f0 taskData '#
-#Wed May 01 13:54:27 CEST 2013
+Tw0 f0 persist false #txt
+Tw0 f0 startName 'View persistent PDF' #txt
+Tw0 f0 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
 .DESC=
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
 .NAM=Preview persisent Reports
-' #txt
-Tw0 f0 caseData '#
-#Fri Feb 19 07:15:43 CET 2010
-businessMilestone.timestamp=
-subType.code=
-mainContact.id=
-mainContact.name=
-processCategory.name=
-businessPriority=
-processCategory.code=
-mainContact.docDb.code=
-mainContact.type=
-businessObject.folder.id=
-businessObject.docDb.code=
-process.name=
-businessCreator.user=
-businessStart.timestamp=
-process.code=
-type.name=
-businessObject.name=
-type.code=
-businessObject.code=
-correspondent.id=
-case.name=
-mainContact.folder.id=
-subType.name=
-case.description=
-' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Tw0 f0 showInStartList 1 #txt
+Tw0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
+ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
+import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
+DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
+taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
+taskUpdDef.setExpiryActivator("Everybody");
+taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
+engine.updateCurrentTask(taskUpdDef);
+' #txt
 Tw0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Preview
+        <name>View
 persistent Report
-Files</name>
-        <nameStyle>31,5,7,9
+(PDF)</name>
+        <nameStyle>28,5,7,9
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
 Tw0 f0 @C|.responsibility Everybody #txt
-Tw0 f0 139 75 26 26 14 0 #rect
+Tw0 f0 171 75 26 26 14 0 #rect
 Tw0 f0 @|StartRequestIcon #fIcon
 Tw0 f1 outLink start2.ivp #txt
 Tw0 f1 type birtextensiontest.Data #txt
-Tw0 f1 actionDecl 'birtextensiontest.Data out;' #txt
+Tw0 f1 inParamTable 'out.reportFormat=ch.ivyteam.ivy.extension.birt.OutputFormat.PDF;
+' #txt
+Tw0 f1 actionDecl 'birtextensiontest.Data out;
+' #txt
 Tw0 f1 requestEnabled true #txt
 Tw0 f1 triggerEnabled false #txt
 Tw0 f1 callSignature start2() #txt
-Tw0 f1 startName 'Preview temporary Reports' #txt
-Tw0 f1 taskData '#
-#Wed May 01 13:54:27 CEST 2013
+Tw0 f1 persist false #txt
+Tw0 f1 startName 'View temporary Report (PDF)' #txt
+Tw0 f1 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
 .DESC=
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
 .NAM=Preview temporary Reports
-' #txt
-Tw0 f1 caseData '#
-#Fri Feb 19 07:16:03 CET 2010
-businessMilestone.timestamp=
-subType.code=
-mainContact.id=
-mainContact.name=
-processCategory.name=
-businessPriority=
-processCategory.code=
-mainContact.docDb.code=
-mainContact.type=
-businessObject.folder.id=
-businessObject.docDb.code=
-process.name=
-businessCreator.user=
-businessStart.timestamp=
-process.code=
-type.name=
-businessObject.name=
-type.code=
-businessObject.code=
-correspondent.id=
-case.name=
-mainContact.folder.id=
-subType.name=
-case.description=
-' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Tw0 f1 showInStartList 1 #txt
+Tw0 f1 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
+ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
+import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
+DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
+taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
+taskUpdDef.setExpiryActivator("Everybody");
+taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
+engine.updateCurrentTask(taskUpdDef);
+' #txt
 Tw0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Preview
-temporary
-Reports</name>
-        <nameStyle>25,5,7,9
+        <name>View 
+temporary Report 
+(PDF)</name>
+        <nameStyle>29,5,7,9
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
 Tw0 f1 @C|.responsibility Everybody #txt
-Tw0 f1 507 83 26 26 14 0 #rect
+Tw0 f1 483 75 26 26 14 0 #rect
 Tw0 f1 @|StartRequestIcon #fIcon
 Tw0 f2 actionDecl 'birtextensiontest.Data out;
 ' #txt
 Tw0 f2 actionTable 'out=in;
 ' #txt
 Tw0 f2 actionCode 'out.reportParas.put("pParameter1","Ich bin Parameter 1");
-out.reportParas.put("pParameter2","Ich bin Parameter 2");
-out.resultFile = new File("Testbericht.pdf");' #txt
+out.reportParas.put("pParameter2","Ich bin Parameter 2");' #txt
 Tw0 f2 type birtextensiontest.Data #txt
 Tw0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Init Parmeters
-and Result File</name>
-        <nameStyle>30,9
+        <name>Init Parmeters</name>
+        <nameStyle>14,7,9
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Tw0 f2 134 164 36 24 20 -13 #rect
+Tw0 f2 166 164 36 24 20 -13 #rect
 Tw0 f2 @|StepIcon #fIcon
 Tw0 f3 actionDecl 'birtextensiontest.Data out;
 ' #txt
@@ -180,48 +159,48 @@ and Result File</name>
     </language>
 </elementInfo>
 ' #txt
-Tw0 f3 502 172 36 24 20 -13 #rect
+Tw0 f3 478 164 36 24 20 -13 #rect
 Tw0 f3 @|StepIcon #fIcon
 Tw0 f4 expr out #txt
-Tw0 f4 152 101 152 164 #arcP
+Tw0 f4 184 101 184 164 #arcP
 Tw0 f5 expr out #txt
-Tw0 f5 520 109 520 172 #arcP
+Tw0 f5 496 101 496 164 #arcP
 Tw0 f6 @AbstractThirdPartyProgramInterface|type birtextensiontest.Data #txt
 Tw0 f6 @AbstractThirdPartyProgramInterface|timeout 0 #txt
-Tw0 f6 @AbstractThirdPartyProgramInterface|beanConfig """Testreport""|in.resultFile|ch.ivyteam.ivy.extension.birt.OutputFormat.PDF|in.reportParas|||" #txt
+Tw0 f6 @AbstractThirdPartyProgramInterface|beanConfig """Testreport""|in.resultFile|in.reportFormat|in.reportParas||" #txt
 Tw0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Generate
 Report in
 Result File</name>
-        <nameStyle>30,9
+        <nameStyle>30,7,9
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Tw0 f6 134 236 36 24 20 -2 #rect
+Tw0 f6 166 236 36 24 20 -2 #rect
 Tw0 f6 @|CreateReportDialog #fIcon
 Tw0 f7 @AbstractThirdPartyProgramInterface|type birtextensiontest.Data #txt
 Tw0 f7 @AbstractThirdPartyProgramInterface|timeout 0 #txt
-Tw0 f7 @AbstractThirdPartyProgramInterface|beanConfig """Testreport""|in.resultFile|ch.ivyteam.ivy.extension.birt.OutputFormat.PDF|in.reportParas|||" #txt
+Tw0 f7 @AbstractThirdPartyProgramInterface|beanConfig """Testreport""|in.resultFile|in.reportFormat|in.reportParas||" #txt
 Tw0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Generate
 Report in
 Result File</name>
-        <nameStyle>30,9
+        <nameStyle>30,7,9
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Tw0 f7 502 244 36 24 20 -2 #rect
+Tw0 f7 478 236 36 24 20 -2 #rect
 Tw0 f7 @|CreateReportDialog #fIcon
 Tw0 f8 expr out #txt
-Tw0 f8 152 188 152 236 #arcP
+Tw0 f8 184 188 184 236 #arcP
 Tw0 f9 expr out #txt
-Tw0 f9 520 196 520 244 #arcP
+Tw0 f9 496 188 496 236 #arcP
 Tw0 f10 actionDecl 'birtextensiontest.Data out;
 ' #txt
 Tw0 f10 actionTable 'out=in;
@@ -239,10 +218,10 @@ url</name>
     </language>
 </elementInfo>
 ' #txt
-Tw0 f10 134 316 36 24 20 -13 #rect
+Tw0 f10 166 332 36 24 20 -13 #rect
 Tw0 f10 @|StepIcon #fIcon
 Tw0 f11 expr out #txt
-Tw0 f11 152 260 152 316 #arcP
+Tw0 f11 184 260 184 332 #arcP
 Tw0 f12 actionDecl 'birtextensiontest.Data out;
 ' #txt
 Tw0 f12 actionTable 'out=in;
@@ -262,14 +241,14 @@ url</name>
     </language>
 </elementInfo>
 ' #txt
-Tw0 f12 502 324 36 24 20 -13 #rect
+Tw0 f12 478 332 36 24 20 -13 #rect
 Tw0 f12 @|StepIcon #fIcon
 Tw0 f13 expr out #txt
-Tw0 f13 520 268 520 324 #arcP
+Tw0 f13 496 260 496 332 #arcP
 Tw0 f14 targetWindow NEW:card: #txt
 Tw0 f14 targetDisplay TOP #txt
-Tw0 f14 richDialogId ch.ivyteam.ivy.extension.birt.ReportViewer #txt
-Tw0 f14 startMethod showReportInExternalBrowser(String) #txt
+Tw0 f14 richDialogId ch.ivyteam.ivy.extension.birt.ReportViewerJsf #txt
+Tw0 f14 startMethod start(String) #txt
 Tw0 f14 type birtextensiontest.Data #txt
 Tw0 f14 requestActionDecl '<String reportUrl> param;' #txt
 Tw0 f14 requestMappingAction 'param.reportUrl=in.reportUrl;
@@ -282,13 +261,14 @@ Tw0 f14 windowConfiguration '{/title "Report Preview"/width 0 /height 0 /centere
 Tw0 f14 isAsynch false #txt
 Tw0 f14 isInnerRd false #txt
 Tw0 f14 isDialog false #txt
+Tw0 f14 userContext '* ' #txt
 Tw0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Preview report
+        <name>View report
 with Report Viewer
 Dialog</name>
-        <nameStyle>40,9
+        <nameStyle>37,7,9
 </nameStyle>
     </language>
 </elementInfo>
@@ -296,8 +276,8 @@ Dialog</name>
 Tw0 f14 310 412 36 24 20 -2 #rect
 Tw0 f14 @|RichDialogIcon #fIcon
 Tw0 f15 expr out #txt
-Tw0 f15 152 340 310 424 #arcP
-Tw0 f15 1 152 424 #addKink
+Tw0 f15 184 356 310 424 #arcP
+Tw0 f15 1 184 424 #addKink
 Tw0 f15 1 0.2341772151898735 0 0 #arcLabel
 Tw0 f17 type birtextensiontest.Data #txt
 Tw0 f17 315 483 26 26 14 0 #rect
@@ -305,9 +285,57 @@ Tw0 f17 @|EndIcon #fIcon
 Tw0 f18 expr out #txt
 Tw0 f18 328 436 328 483 #arcP
 Tw0 f16 expr out #txt
-Tw0 f16 520 348 346 424 #arcP
-Tw0 f16 1 520 424 #addKink
+Tw0 f16 496 356 346 424 #arcP
+Tw0 f16 1 496 424 #addKink
 Tw0 f16 1 0.28160919540229884 0 0 #arcLabel
+Tw0 f19 outLink viewHtmlReport.ivp #txt
+Tw0 f19 type birtextensiontest.Data #txt
+Tw0 f19 inParamDecl '<> param;' #txt
+Tw0 f19 inParamTable 'out.reportFormat=ch.ivyteam.ivy.extension.birt.OutputFormat.HTML;
+out.resultFile=new File("Testbericht.html");
+' #txt
+Tw0 f19 actionDecl 'birtextensiontest.Data out;
+' #txt
+Tw0 f19 guid 15364BE45479F267 #txt
+Tw0 f19 requestEnabled true #txt
+Tw0 f19 triggerEnabled false #txt
+Tw0 f19 callSignature viewHtmlReport() #txt
+Tw0 f19 persist false #txt
+Tw0 f19 startName 'View persistent Report (HTML)' #txt
+Tw0 f19 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tw0 f19 showInStartList 1 #txt
+Tw0 f19 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
+ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
+import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
+DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
+taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
+taskUpdDef.setExpiryActivator("Everybody");
+taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
+engine.updateCurrentTask(taskUpdDef);
+' #txt
+Tw0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>View 
+persistent Report
+(HTML)</name>
+        <nameStyle>30,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tw0 f19 @C|.responsibility Everybody #txt
+Tw0 f19 35 75 26 26 14 0 #rect
+Tw0 f19 @|StartRequestIcon #fIcon
+Tw0 f20 expr out #txt
+Tw0 f20 48 101 166 176 #arcP
+Tw0 f20 1 48 176 #addKink
+Tw0 f20 1 0.05667520337426348 0 0 #arcLabel
 >Proto Tw0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -347,3 +375,5 @@ Tw0 f14 mainOut f18 tail #connect
 Tw0 f18 head f17 mainIn #connect
 Tw0 f12 mainOut f16 tail #connect
 Tw0 f16 head f14 mainIn #connect
+Tw0 f19 mainOut f20 tail #connect
+Tw0 f20 head f2 mainIn #connect

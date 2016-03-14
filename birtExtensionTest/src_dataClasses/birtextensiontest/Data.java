@@ -7,7 +7,7 @@ package birtextensiontest;
 public class Data extends ch.ivyteam.ivy.scripting.objects.CompositeObject
 {
   /** SerialVersionUID */
-  private static final long serialVersionUID = -5270169852841555949L;
+  private static final long serialVersionUID = -221286736827607010L;
 
   private java.util.HashMap reportParas;
 
@@ -67,6 +67,26 @@ public class Data extends ch.ivyteam.ivy.scripting.objects.CompositeObject
   public void setReportUrl(java.lang.String _reportUrl)
   {
     reportUrl = _reportUrl;
+  }
+
+  private ch.ivyteam.ivy.extension.birt.OutputFormat reportFormat;
+
+  /**
+   * Gets the field reportFormat.
+   * @return the value of the field reportFormat; may be null.
+   */
+  public ch.ivyteam.ivy.extension.birt.OutputFormat getReportFormat()
+  {
+    return reportFormat;
+  }
+
+  /**
+   * Sets the field reportFormat.
+   * @param _reportFormat the new value of the field reportFormat.
+   */
+  public void setReportFormat(ch.ivyteam.ivy.extension.birt.OutputFormat _reportFormat)
+  {
+    reportFormat = _reportFormat;
   }
 
 }

@@ -38,7 +38,7 @@ public class IvyBirtReportService
 
   public IvyBirtReportService(IReportEngine _engine, String _designRepository)
   {
-    engine = _engine;
+    this(_engine);
     designRepository = _designRepository;
   }
 
@@ -112,6 +112,9 @@ public class IvyBirtReportService
   {
     try
     {
+      // fix IllegalStateException while generating HTML task. See https://www.eclipse.org/forums/index.php/t/545694/
+      System.setSecurityManager(null);
+    	
       IRunAndRenderTask task = engine.createRunAndRenderTask(design);
       if (parameters != null)
       {
@@ -135,6 +138,7 @@ public class IvyBirtReportService
       task.setRenderOption(options);
       FileOutputStream fos = new FileOutputStream(outputFile.getJavaFile());
       task.getRenderOption().setOutputStream(fos);
+      
       task.run();
       task.close();
       fos.close();

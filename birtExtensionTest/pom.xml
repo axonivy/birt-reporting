@@ -5,6 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.ivy.supplements</groupId>
   <artifactId>birt-extension-test</artifactId>
+  <version>6.1.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   
   <parent>
@@ -14,17 +15,213 @@
   	<relativePath>..</relativePath>
   </parent>
   
+  <properties>
+  	<engine.dir>${project.build.directory}/ivyEngine</engine.dir>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>com.axonivy.ivy.supplements</groupId>
+  		<artifactId>ch.ivyteam.ivy.extension.birt</artifactId>
+  		<version>${project.version}</version>
+  		<scope>runtime</scope>
+  		<exclusions>
+  			<exclusion>
+  				<groupId>*</groupId>
+  				<artifactId>*</artifactId>
+  			</exclusion>
+  		</exclusions>
+  	</dependency>
+  	
+  	<dependency>
+		<groupId>org.eclipse.birt.runtime</groupId>
+		<artifactId>org.eclipse.birt.runtime</artifactId>
+		<version>4.4.2</version><!-- must match birt runtime in the designer -->
+		<scope>runtime</scope>
+		<exclusions>
+			<!-- avoid runtime methodNotFoundException because of conflict with existing commons -->
+			<exclusion>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>commons-cli</groupId>
+				<artifactId>commons-cli</artifactId>
+			</exclusion>
+			<exclusion>
+				<artifactId>commons-codec</artifactId>
+				<groupId>commons-codec</groupId>
+			</exclusion>
+			<exclusion>
+				<artifactId>xml-apis</artifactId>
+				<groupId>xml-apis</groupId>
+			</exclusion>
+			<exclusion>
+				<artifactId>xmlbeans</artifactId>
+				<groupId>org.apache.xmlbeans</groupId>
+			</exclusion>
+			<exclusion>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.12</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.seleniumhq.selenium</groupId>
+		<artifactId>selenium-java</artifactId>
+		<version>2.48.1</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.assertj</groupId>
+		<artifactId>assertj-core</artifactId>
+		<version>3.2.0</version>
+		<scope>test</scope>
+	</dependency>
+  </dependencies>
+  
   <build>
+  	<testSourceDirectory>src_test</testSourceDirectory>
+  	<testOutputDirectory>classes</testOutputDirectory>
+  
     <plugins>
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
         <version>6.1.0</version>
         <extensions>true</extensions>
+        <executions>
+        	<execution>
+        		<phase>integration-test</phase>
+        		<goals><goal>deploy-iar</goal></goals>
+        		<configuration>
+        			<deployToEngineApplication>Portal</deployToEngineApplication>
+        		</configuration>
+        	</execution>
+        	<execution>
+        		<!-- avoid classpath library conflicts: 
+        		we do not want all ivy engine libararies on the classpath for selenium tests -->
+        		<id>default-ivy-test-properties</id>
+        		<configuration>
+        			<skipTest>true</skipTest>
+        		</configuration>
+        	</execution>
+        </executions>
         <configuration>
+          <engineDirectory>${engine.dir}</engineDirectory>	
           <ivyVersion>${ivy.version}</ivyVersion>
         </configuration>
       </plugin>
+      
+      <plugin>
+      	<groupId>org.apache.maven.plugins</groupId>
+      	<artifactId>maven-dependency-plugin</artifactId>
+      	<version>2.10</version>
+      	<executions>
+      		<execution>
+      			<id>integrate.birt.into.ivy.engine</id>
+      			<phase>generate-resources</phase>
+      			<goals><goal>copy-dependencies</goal></goals>
+      			<configuration>
+      				<outputDirectory>${engine.dir}/lib/shared</outputDirectory>
+      				<includeScope>runtime</includeScope>
+      			</configuration>
+      		</execution>
+      	</executions>
+      </plugin>
+
+		<plugin>
+			<artifactId>maven-antrun-plugin</artifactId>
+			<version>1.8</version>
+			<executions>
+				<execution>
+					<id>provide.mandatory.birt.properties</id>
+					<phase>process-resources</phase>
+					<goals><goal>run</goal></goals>
+					<configuration>
+						<target>
+							<property name="engineHome" value="${project.build.directory}" />
+							<property name="designRepository" value="${basedir}/reports" />
+							<echoproperties
+								destfile="${engine.dir}/configuration/extensions/birt.properties">
+								<propertyset>
+									<propertyref name="engineHome" />
+									<propertyref name="designRepository" />
+								</propertyset>
+							</echoproperties>
+						</target>
+					</configuration>
+				</execution>
+				
+				<execution>
+						<id>start.test.engine</id>
+						<phase>pre-integration-test</phase>
+						<goals><goal>run</goal></goals>
+						<configuration>
+							<target>
+								<echo>Starting AXON.IVY test engine</echo>
+								<property name="test.engine.log" value="${project.build.directory}/testEngineOut.log"/>
+								<parallel> 
+							        <daemons>
+										<java jar="${project.build.directory}/ivy.engine.classpath.jar" 
+											dir="${ivy.engine.directory}" output="${test.engine.log}"
+											newenvironment="true" fork="true" maxmemory="2048m" />
+									</daemons>
+									<sequential>
+										<waitfor maxwait="2" maxwaitunit="minute" 
+											     checkevery="5" checkeveryunit="second" 
+											     timeoutproperty="server.not.started">
+											<resourcecontains resource="${test.engine.log}" 
+												substring="is running and ready to serve"/>
+										</waitfor>
+									</sequential>
+								</parallel>
+								<echo>boot operation finished!</echo>
+								
+								<loadfile srcFile="${test.engine.log}" property="test.engine.url">
+									<filterchain>
+										<linecontainsregexp>
+											<regexp id="port" pattern="http[s]?://(\S+)"/>
+								        </linecontainsregexp>
+										<tokenfilter>
+										    <replaceregex pattern="(.*)(http[\S]+)(.*)" replace="\2" />
+										</tokenfilter>
+									</filterchain>
+								</loadfile>
+								
+								<echo>engine started on: ${test.engine.url}!</echo>
+							</target>
+							<exportAntProperties>true</exportAntProperties>
+						</configuration>
+					</execution>
+			</executions>
+		</plugin>
+		
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>2.19.1</version>
+			<executions>
+				<execution>
+					<id>selenium.web.tests</id>
+					<phase>integration-test</phase>
+					<goals><goal>test</goal></goals>
+					<configuration>
+						<includes>
+							<include>**/WebTest*.java</include>
+						</includes>
+						<argLine>-DengineUrl=${test.engine.url}</argLine>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
     </plugins>
   </build>
   
