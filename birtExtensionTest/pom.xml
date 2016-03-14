@@ -36,7 +36,7 @@
   	<dependency>
 		<groupId>org.eclipse.birt.runtime</groupId>
 		<artifactId>org.eclipse.birt.runtime</artifactId>
-		<version>4.4.2</version><!-- must match birt runtime in the designer -->
+		<version>4.4.2</version>
 		<scope>runtime</scope>
 		<exclusions>
 			<!-- avoid runtime methodNotFoundException because of conflict with existing commons -->
@@ -217,7 +217,7 @@
 						<includes>
 							<include>**/WebTest*.java</include>
 						</includes>
-						<argLine>-DengineUrl=${test.engine.url}</argLine>
+						<argLine>-DengineUrl=${test.engine.url} -DengineLogFile=${test.engine.log}</argLine>
 					</configuration>
 				</execution>
 			</executions>
