@@ -4,7 +4,7 @@ public class IvyEngine
 {
 	public static String getBaseUrl() 
 	{
-		String vmArgUrl = System.getProperty("engineUrl");
+		String vmArgUrl = System.getProperty("test.engine.url");
 		if (vmArgUrl != null) 
 		{
 			return vmArgUrl;

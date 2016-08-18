@@ -17,6 +17,7 @@
   
   <properties>
   	<engine.dir>${project.build.directory}/ivyEngine</engine.dir>
+  	<test.application>Portal</test.application>
   </properties>
   
   <dependencies>
@@ -64,6 +65,11 @@
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
 			</exclusion>
+			<exclusion>
+				<!-- avoid package signer conflict with commons-io -->
+				<groupId>org.eclipse.birt.runtime.3_7_1</groupId>
+				<artifactId>org.apache.batik.pdf</artifactId>
+			</exclusion>
 		</exclusions>
 	</dependency>
 	
@@ -76,13 +82,24 @@
 	<dependency>
 		<groupId>org.seleniumhq.selenium</groupId>
 		<artifactId>selenium-java</artifactId>
-		<version>2.48.1</version>
+		<version>2.53.1</version>
 		<scope>test</scope>
+		<!-- avoid http client builder error at runtime with HttpDriverBuilder -->
+		<exclusions>
+			<exclusion>
+				<artifactId>selenium-chrome-driver</artifactId>
+				<groupId>org.seleniumhq.selenium</groupId>
+			</exclusion>
+			<exclusion>
+				<artifactId>selenium-edge-driver</artifactId>
+				<groupId>org.seleniumhq.selenium</groupId>
+			</exclusion>
+		</exclusions>
 	</dependency>
 	<dependency>
 		<groupId>org.assertj</groupId>
 		<artifactId>assertj-core</artifactId>
-		<version>3.2.0</version>
+		<version>3.5.1</version>
 		<scope>test</scope>
 	</dependency>
   </dependencies>
@@ -95,16 +112,9 @@
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
-        <version>6.1.0</version>
+        <version>6.2.0</version>
         <extensions>true</extensions>
         <executions>
-        	<execution>
-        		<phase>integration-test</phase>
-        		<goals><goal>deploy-iar</goal></goals>
-        		<configuration>
-        			<deployToEngineApplication>Portal</deployToEngineApplication>
-        		</configuration>
-        	</execution>
         	<execution>
         		<!-- avoid classpath library conflicts: 
         		we do not want all ivy engine libararies on the classpath for selenium tests -->
@@ -113,6 +123,23 @@
         			<skipTest>true</skipTest>
         		</configuration>
         	</execution>
+        	<execution>
+				<id>start.test.engine</id>
+				<goals><goal>start-test-engine</goal></goals>
+				<phase>pre-integration-test</phase>
+			</execution>
+        	<execution>
+        		<phase>pre-integration-test</phase>
+        		<goals><goal>deploy-iar</goal></goals>
+        		<configuration>
+        			<deployToEngineApplication>${test.application}</deployToEngineApplication>
+        		</configuration>
+        	</execution>
+        	<execution>
+				<id>stop.test.engine</id>
+				<goals><goal>stop-test-engine</goal></goals>
+				<phase>post-integration-test</phase>
+			</execution>
         </executions>
         <configuration>
           <engineDirectory>${engine.dir}</engineDirectory>	
@@ -159,48 +186,6 @@
 						</target>
 					</configuration>
 				</execution>
-				
-				<execution>
-						<id>start.test.engine</id>
-						<phase>pre-integration-test</phase>
-						<goals><goal>run</goal></goals>
-						<configuration>
-							<target>
-								<echo>Starting AXON.IVY test engine</echo>
-								<property name="test.engine.log" value="${project.build.directory}/testEngineOut.log"/>
-								<parallel> 
-							        <daemons>
-										<java jar="${project.build.directory}/ivy.engine.classpath.jar" 
-											dir="${ivy.engine.directory}" output="${test.engine.log}"
-											newenvironment="true" fork="true" maxmemory="2048m" />
-									</daemons>
-									<sequential>
-										<waitfor maxwait="2" maxwaitunit="minute" 
-											     checkevery="5" checkeveryunit="second" 
-											     timeoutproperty="server.not.started">
-											<resourcecontains resource="${test.engine.log}" 
-												substring="is running and ready to serve"/>
-										</waitfor>
-									</sequential>
-								</parallel>
-								<echo>boot operation finished!</echo>
-								
-								<loadfile srcFile="${test.engine.log}" property="test.engine.url">
-									<filterchain>
-										<linecontainsregexp>
-											<regexp id="port" pattern="http[s]?://(\S+)"/>
-								        </linecontainsregexp>
-										<tokenfilter>
-										    <replaceregex pattern="(.*)(http[\S]+)(.*)" replace="\2" />
-										</tokenfilter>
-									</filterchain>
-								</loadfile>
-								
-								<echo>engine started on: ${test.engine.url}!</echo>
-							</target>
-							<exportAntProperties>true</exportAntProperties>
-						</configuration>
-					</execution>
 			</executions>
 		</plugin>
 		
@@ -217,7 +202,12 @@
 						<includes>
 							<include>**/WebTest*.java</include>
 						</includes>
-						<argLine>-DengineUrl=${test.engine.url} -DengineLogFile=${test.engine.log}</argLine>
+						<argLine>
+							-Dtest.engine.url=${test.engine.url}
+							-Dtest.engine.app=${test.application}
+							-Dtest.engine.log=${project.build.directory}/testEngineOut.log
+						</argLine>
+						<debugForkedProcess>true</debugForkedProcess>
 					</configuration>
 				</execution>
 			</executions>

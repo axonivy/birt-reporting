@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,7 +17,7 @@ public class WebTestReportGeneration {
 		LogCollector engineLog = new LogCollector();
 		engineLog.start();
 		
-		WebDriver driver = new FirefoxDriver();
+		WebDriver driver = new HtmlUnitDriver(true);
 		try
 		{
 			driver.get(IvyEngine.getBaseUrl()+"/info/index.jsp?showSystemApp=true");
@@ -32,11 +32,11 @@ public class WebTestReportGeneration {
 		}
 		catch(Exception ex)
 		{
-			engineLog.stop();
 			throw ex;
 		}
 		finally
 		{
+			engineLog.stop();
 			driver.close();
 		}
 	}

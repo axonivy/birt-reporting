@@ -9,12 +9,12 @@ import java.util.List;
 
 
 public class LogCollector {
-
-	private File log;
+	private final File log;
 	private long lengthOnStart;
 
-	public LogCollector() {
-		log = new File(System.getProperty("engineLogFile"));
+	public LogCollector() 
+	{
+		log = new File(System.getProperty("test.engine.log"));
 	}
 	
 	public void start()
