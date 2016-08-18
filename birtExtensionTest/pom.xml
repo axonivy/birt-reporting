@@ -207,7 +207,6 @@
 							-Dtest.engine.app=${test.application}
 							-Dtest.engine.log=${project.build.directory}/testEngineOut.log
 						</argLine>
-						<debugForkedProcess>true</debugForkedProcess>
 					</configuration>
 				</execution>
 			</executions>
