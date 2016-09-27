@@ -7,7 +7,7 @@ Download the latest BIRT extension [here] (https://github.com/ivy-supplements/bi
 
 ## Documentation
 ### Design a report
-To use the BIRT report design perspective in the Axon.ivy Designer you have several possibilities:
+To design reports there are several tools you can use:
 
 #### 1. RCP Designer (recommended)
 The RCP Designer is a dedicated tool for designing reports. 
