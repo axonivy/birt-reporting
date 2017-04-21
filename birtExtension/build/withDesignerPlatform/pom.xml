@@ -51,7 +51,7 @@
 					              select="\1"
 					              casesensitive="false" />
 
-								<echo>found: ${designer.packed}</echo>
+								<echo>found: ${designer.packed} with pattern ${pattern}</echo>
 								<get src="${designer.download.url}/${designer.packed}"
 									dest="${project.build.directory}/designer.zip" />
 								<unzip src="${project.build.directory}/designer.zip"
