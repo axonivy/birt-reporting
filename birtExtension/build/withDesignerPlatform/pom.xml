@@ -22,7 +22,7 @@
 
 	<properties>
 		<designer.download.url>http://developer.axonivy.com/download/</designer.download.url>
-		<designer.download.arch>win32\.win32\.x86_64</designer.download.arch>
+		<designer.download.arch>Windows_x64</designer.download.arch>
 		<product.dir>${project.build.directory}/designer</product.dir>
 	</properties>
 
@@ -40,17 +40,17 @@
 							<target>
 								<get src="${designer.download.url}"
 									dest="${project.build.directory}/designer-download.html" />
-								<loadfile property="designer.download.html" 
+								<loadfile property="designer.download.html"
 									srcFile="${project.build.directory}/designer-download.html"/>
-								
+
 								<taskdef resource="net/sf/antcontrib/antlib.xml"/>
 								<property name="pattern">href=\"([^\"]*AxonIvyDesigner${ivy.version}[^\"]*${designer.download.arch}[^\"]*)\"</property>
 								<propertyregex property="designer.packed"
 					              input="${designer.download.html}"
 					              regexp="${pattern}"
 					              select="\1"
-					              casesensitive="false" />	
-									
+					              casesensitive="false" />
+
 								<echo>found: ${designer.packed}</echo>
 								<get src="${designer.download.url}/${designer.packed}"
 									dest="${project.build.directory}/designer.zip" />
@@ -98,9 +98,9 @@
                     <append>true</append>
                 </configuration>
             </plugin>
-            
-            
-            
+
+
+
             <plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
