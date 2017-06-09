@@ -16,9 +16,8 @@
 
 	<repositories>
 		<repository>
-			<id>designer</id>
-			<!-- provided by the buildhelper: build/withDesignerPlatform/pom.xml -->
-			<url>http://localhost:8080/site/</url>
+			<id>ivy.nightly</id>
+			<url>http://developer.axonivy.com/dev-releases/ivy/nightly/current/p2/</url>
 			<layout>p2</layout>
 		</repository>
 	</repositories>
