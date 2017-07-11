@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Birt Extension
 Bundle-SymbolicName: ch.ivyteam.ivy.extension.birt;singleton:=true
-Bundle-Version: 6.1.0.qualifier
+Bundle-Version: 6.6.0.qualifier
 Bundle-Vendor: Demolsky Markus
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: ch.ivyteam.ivy.server;bundle-version="6.0.0",
@@ -12,7 +12,7 @@ Require-Bundle: ch.ivyteam.ivy.server;bundle-version="6.0.0",
  ch.ivyteam.base;bundle-version="6.0.0",
  ch.ivyteam.ivy.reporting.base;bundle-version="6.0.0",
  ch.ivyteam.util;bundle-version="6.0.0",
- ch.ivyteam.ivy.designer.process.ui;bundle-version="6.0.0"
+ ch.ivyteam.ivy.designer.process.ui;bundle-version="6.0.0";resolution:=optional
 Bundle-ClassPath: .,
  lib/chartengineapi.jar,
  lib/chartitemapi.jar,
