@@ -89,19 +89,29 @@
 									<propertyref name="designRepository" />
 								</propertyset>
 							</echoproperties>
+							<property name="birt.rt.zip" value="${basedir}/birt-runtime-osgi-4_2_2.zip"/>
+						  	<available file="${birt.rt.zip}" property="birt.rt.zip.present"/>
+						</target>
+						<exportAntProperties>true</exportAntProperties>
+					</configuration>
+				</execution>
+				<execution>
+					<id>download.birt.runtime</id>
+					<phase>pre-integration-test</phase>
+					<goals><goal>run</goal></goals>
+					<configuration>
+						<target unless="birt.rt.zip.present">
+						  	<get src="http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip" 
+						  		dest="${birt.rt.zip}"/>
 						</target>
 					</configuration>
 				</execution>
 				<execution>
-					<id>get.birt.runtime</id>
+					<id>integrate.birt.runtime</id>
 					<phase>pre-integration-test</phase>
 					<goals><goal>run</goal></goals>
 					<configuration>
 						<target>
-							<property name="birt.rt.zip" value="${project.build.directory}/birt-runtime-osgi-4_2_2.zip"/>
-						  	<available file="${birt.rt.zip}" property="birt.rt.zip.present"/>
-						  	<get src="http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip" 
-						  		dest="${birt.rt.zip}"/>
 						  	<unzip src="${birt.rt.zip}" dest="${engine.dir}/lib/birtRuntime" />
 						</target>
 					</configuration>
@@ -143,6 +153,9 @@
         <configuration>
           <engineDirectory>${engine.dir}</engineDirectory>	
           <ivyVersion>${ivy.version}</ivyVersion>
+          <iarExcludes>
+          	<iarExclude>birt-runtime-osgi*.zip</iarExclude>
+          </iarExcludes>
         </configuration>
       </plugin>
       
