@@ -2,203 +2,214 @@
 <project
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.axonivy.ivy.supplements</groupId>
-  <artifactId>birt-extension-test</artifactId>
-  <version>6.6.0-SNAPSHOT</version>
-  <packaging>iar</packaging>
-  
-  <parent>
-  	<groupId>com.axonivy.ivy.supplements</groupId>
-  	<artifactId>birt-extension-modules</artifactId>
-  	<version>6.1.0-SNAPSHOT</version>
-  	<relativePath>..</relativePath>
-  </parent>
-  
-  <properties>
-  	<engine.dir>${project.build.directory}/ivyEngine</engine.dir>
-  	<test.application>Portal</test.application>
-  </properties>
-  
-  <dependencies>
-  	<dependency>
-  		<groupId>com.axonivy.ivy.supplements</groupId>
-  		<artifactId>ch.ivyteam.ivy.extension.birt</artifactId>
-  		<version>${project.version}</version>
-  		<scope>compile</scope>
-  		<exclusions>
-  			<exclusion>
-  				<groupId>*</groupId>
-  				<artifactId>*</artifactId>
-  			</exclusion>
-  		</exclusions>
-  	</dependency>
-	<dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-		<version>4.12</version>
-		<scope>test</scope>
-	</dependency>
-	<dependency>
-		<groupId>org.seleniumhq.selenium</groupId>
-		<artifactId>selenium-java</artifactId>
-		<version>2.53.1</version>
-		<scope>test</scope>
-		<!-- avoid http client builder error at runtime with HttpDriverBuilder -->
-		<exclusions>
-			<exclusion>
-				<artifactId>selenium-chrome-driver</artifactId>
-				<groupId>org.seleniumhq.selenium</groupId>
-			</exclusion>
-			<exclusion>
-				<artifactId>selenium-edge-driver</artifactId>
-				<groupId>org.seleniumhq.selenium</groupId>
-			</exclusion>
-		</exclusions>
-	</dependency>
-	<dependency>
-		<groupId>org.assertj</groupId>
-		<artifactId>assertj-core</artifactId>
-		<version>3.5.1</version>
-		<scope>test</scope>
-	</dependency>
-  </dependencies>
-  
-  <build>
-  	<testSourceDirectory>src_test</testSourceDirectory>
-  	<testOutputDirectory>classes</testOutputDirectory>
-  
-    <plugins>
-    
-    	<plugin>
-			<artifactId>maven-antrun-plugin</artifactId>
-			<version>1.8</version>
-			<executions>
-				<execution>
-					<id>provide.mandatory.birt.properties</id>
-					<phase>process-resources</phase>
-					<goals><goal>run</goal></goals>
-					<configuration>
-						<target>
-							<property name="engineHome" value="${engine.dir}/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine" />
-							<property name="designRepository" value="${basedir}/reports" />
-							<echoproperties
-								destfile="${engine.dir}/configuration/extensions/birt.properties">
-								<propertyset>
-									<propertyref name="engineHome" />
-									<propertyref name="designRepository" />
-								</propertyset>
-							</echoproperties>
-							<property name="birt.rt.zip" value="${basedir}/birt-runtime-osgi-4_2_2.zip"/>
-						  	<available file="${birt.rt.zip}" property="birt.rt.zip.present"/>
-						</target>
-						<exportAntProperties>true</exportAntProperties>
-					</configuration>
-				</execution>
-				<execution>
-					<id>download.birt.runtime</id>
-					<phase>pre-integration-test</phase>
-					<goals><goal>run</goal></goals>
-					<configuration>
-						<target unless="birt.rt.zip.present">
-						  	<get src="http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip" 
-						  		dest="${birt.rt.zip}"/>
-						</target>
-					</configuration>
-				</execution>
-				<execution>
-					<id>integrate.birt.runtime</id>
-					<phase>pre-integration-test</phase>
-					<goals><goal>run</goal></goals>
-					<configuration>
-						<target>
-						  	<unzip src="${birt.rt.zip}" dest="${engine.dir}/lib/birtRuntime" />
-						</target>
-					</configuration>
-				</execution>
-			</executions>
-		</plugin>
-      <plugin>
-        <groupId>com.axonivy.ivy.ci</groupId>
-        <artifactId>project-build-plugin</artifactId>
-        <version>6.5.1-SNAPSHOT</version>
-        <extensions>true</extensions>
-        <executions>
-        	<execution>
-        		<!-- avoid classpath library conflicts: 
-        		we do not want all ivy engine libararies on the classpath for selenium tests -->
-        		<id>default-ivy-test-properties</id>
-        		<configuration>
-        			<skipTest>true</skipTest>
-        		</configuration>
-        	</execution>
-        	<execution>
-				<id>start.test.engine</id>
-				<goals><goal>start-test-engine</goal></goals>
-				<phase>pre-integration-test</phase>
-			</execution>
-        	<execution>
-        		<phase>pre-integration-test</phase>
-        		<goals><goal>deploy-iar</goal></goals>
-        		<configuration>
-        			<deployToEngineApplication>${test.application}</deployToEngineApplication>
-        		</configuration>
-        	</execution>
-        	<execution>
-				<id>stop.test.engine</id>
-				<goals><goal>stop-test-engine</goal></goals>
-				<phase>post-integration-test</phase>
-			</execution>
-        </executions>
-        <configuration>
-          <engineDirectory>${engine.dir}</engineDirectory>	
-          <ivyVersion>${ivy.version}</ivyVersion>
-          <iarExcludes>
-          	<iarExclude>birt-runtime-osgi*.zip</iarExclude>
-          </iarExcludes>
-        </configuration>
-      </plugin>
-      
-      <plugin>
-      	<groupId>org.apache.maven.plugins</groupId>
-      	<artifactId>maven-dependency-plugin</artifactId>
-      	<version>2.10</version>
-      	<executions>
-      		<execution>
-      			<id>integrate.birt.extension.into.ivy.engine</id>
-      			<phase>generate-resources</phase>
-      			<goals><goal>copy-dependencies</goal></goals>
-      			<configuration>
-      				<outputDirectory>${engine.dir}/lib/dropins</outputDirectory>
-      				<includeArtifactIds>ch.ivyteam.ivy.extension.birt</includeArtifactIds>
-      			</configuration>
-      		</execution>
-      	</executions>
-      </plugin>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.axonivy.ivy.supplements</groupId>
+	<artifactId>birt-extension-test</artifactId>
+	<version>6.6.0-SNAPSHOT</version>
+	<packaging>iar</packaging>
 
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-surefire-plugin</artifactId>
-			<version>2.19.1</version>
-			<executions>
-				<execution>
-					<id>selenium.web.tests</id>
-					<phase>integration-test</phase>
-					<goals><goal>test</goal></goals>
-					<configuration>
-						<includes>
-							<include>**/WebTest*.java</include>
-						</includes>
-						<argLine>
-							-Dtest.engine.url=${test.engine.url}
-							-Dtest.engine.app=${test.application}
-							-Dtest.engine.log=${project.build.directory}/testEngineOut.log
-						</argLine>
-					</configuration>
-				</execution>
-			</executions>
-		</plugin>
-    </plugins>
-  </build>
-  
+	<parent>
+		<groupId>com.axonivy.ivy.supplements</groupId>
+		<artifactId>birt-extension-modules</artifactId>
+		<version>6.6.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<properties>
+		<engine.dir>${project.build.directory}/ivyEngine</engine.dir>
+		<test.application>Portal</test.application>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.axonivy.ivy.supplements</groupId>
+			<artifactId>ch.ivyteam.ivy.extension.birt</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.53.1</version>
+			<scope>test</scope>
+			<!-- avoid http client builder error at runtime with HttpDriverBuilder -->
+			<exclusions>
+				<exclusion>
+					<artifactId>selenium-chrome-driver</artifactId>
+					<groupId>org.seleniumhq.selenium</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>selenium-edge-driver</artifactId>
+					<groupId>org.seleniumhq.selenium</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.5.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<testSourceDirectory>src_test</testSourceDirectory>
+		<testOutputDirectory>classes</testOutputDirectory>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>provide.mandatory.birt.properties</id>
+						<phase>process-resources</phase>
+						<goals><goal>run</goal></goals>
+						<configuration>
+							<target>
+								<property name="engineHome"
+									value="${engine.dir}/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine" />
+								<property name="designRepository" value="${basedir}/reports" />
+								<echoproperties
+									destfile="${engine.dir}/configuration/extensions/birt.properties">
+									<propertyset>
+										<propertyref name="engineHome" />
+										<propertyref name="designRepository" />
+									</propertyset>
+								</echoproperties>
+								<property name="birt.rt.zip" value="${basedir}/birt-runtime-osgi-4_2_2.zip" />
+								<available file="${birt.rt.zip}" property="birt.rt.zip.present" />
+							</target>
+							<exportAntProperties>true</exportAntProperties>
+						</configuration>
+					</execution>
+					<execution>
+						<id>download.birt.runtime</id>
+						<phase>pre-integration-test</phase>
+						<goals><goal>run</goal></goals>
+						<configuration>
+							<target unless="birt.rt.zip.present">
+								<get
+									src="http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip"
+									dest="${birt.rt.zip}" />
+							</target>
+						</configuration>
+					</execution>
+					<execution>
+						<id>integrate.birt.runtime</id>
+						<phase>pre-integration-test</phase>
+						<goals><goal>run</goal></goals>
+						<configuration>
+							<target>
+								<unzip src="${birt.rt.zip}" dest="${engine.dir}/lib/birtRuntime" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.axonivy.ivy.ci</groupId>
+				<artifactId>project-build-plugin</artifactId>
+				<version>6.5.1-SNAPSHOT</version>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<!-- avoid classpath library conflicts: we do not want all ivy engine 
+							libararies on the classpath for selenium tests -->
+						<id>default-ivy-test-properties</id>
+						<configuration>
+							<skipTest>true</skipTest>
+						</configuration>
+					</execution>
+					<execution>
+						<id>start.test.engine</id>
+						<goals>
+							<goal>start-test-engine</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+					</execution>
+					<execution>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>deploy-iar</goal>
+						</goals>
+						<configuration>
+							<deployToEngineApplication>${test.application}</deployToEngineApplication>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop.test.engine</id>
+						<goals>
+							<goal>stop-test-engine</goal>
+						</goals>
+						<phase>post-integration-test</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<engineDirectory>${engine.dir}</engineDirectory>
+					<ivyVersion>${ivy.version}</ivyVersion>
+					<iarExcludes>
+						<iarExclude>birt-runtime-osgi*.zip</iarExclude>
+					</iarExcludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+				<executions>
+					<execution>
+						<id>integrate.birt.extension.into.ivy.engine</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${engine.dir}/lib/dropins</outputDirectory>
+							<includeArtifactIds>ch.ivyteam.ivy.extension.birt</includeArtifactIds>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<executions>
+					<execution>
+						<id>selenium.web.tests</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<includes>
+								<include>**/WebTest*.java</include>
+							</includes>
+							<argLine>
+								-Dtest.engine.url=${test.engine.url}
+								-Dtest.engine.app=${test.application}
+								-Dtest.engine.log=${project.build.directory}/testEngineOut.log
+							</argLine>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

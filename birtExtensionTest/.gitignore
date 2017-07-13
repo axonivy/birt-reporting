@@ -1,3 +1,4 @@
 # Java
 src_dataClasses/*.java
 
+/birt-runtime-osgi*.zip
