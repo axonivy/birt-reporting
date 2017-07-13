@@ -80,7 +80,7 @@
 						<configuration>
 							<target>
 								<property name="engineHome"
-									value="${engine.dir}/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine" />
+									value="lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine" />
 								<property name="designRepository" value="${basedir}/reports" />
 								<echoproperties
 									destfile="${engine.dir}/configuration/extensions/birt.properties">
