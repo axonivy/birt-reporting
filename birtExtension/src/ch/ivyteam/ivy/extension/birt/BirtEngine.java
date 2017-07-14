@@ -31,6 +31,7 @@ public class BirtEngine implements IServerExtension
   /**
    * @see ch.ivyteam.ivy.server.IServerExtension#getIdentifier()
    */
+  @Override
   public String getIdentifier()
   {
     return EXTENSION_ID;
@@ -39,6 +40,7 @@ public class BirtEngine implements IServerExtension
   /**
    * @see ch.ivyteam.ivy.lifecycle.ILifecycle#getName()
    */
+  @Override
   public String getName()
   {
     return "BirtEngine";
@@ -52,6 +54,7 @@ public class BirtEngine implements IServerExtension
   /**
    * @see ch.ivyteam.ivy.lifecycle.ILifecycle#start(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public void start(IProgressMonitor monitor) throws Exception
   {
     // Save security manager and set it to null, on order to have no permission
@@ -94,6 +97,7 @@ public class BirtEngine implements IServerExtension
   /**
    * @see ch.ivyteam.ivy.lifecycle.ILifecycle#stop(org.eclipse.core.runtime.IProgressMonitor)
    */
+  @Override
   public void stop(IProgressMonitor monitor) throws Exception
   {
     reportEngine.destroy();

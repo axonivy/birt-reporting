@@ -23,6 +23,7 @@ public class BirtProcessElements implements IExtensibleStandardProcessElementExt
   /**
    * @see ch.ivyteam.ivy.components.IStandardProcessElementExtension#getName()
    */
+  @Override
   public String getName()
   {
     return NAME;
@@ -32,6 +33,7 @@ public class BirtProcessElements implements IExtensibleStandardProcessElementExt
    * @see ch.ivyteam.ivy.components.IStandardProcessElementExtension#createBpmnIcon(ch.ivyteam.ivy.process.element.IBpmnIconFactory,
    *      java.lang.String)
    */
+  @Override
   public Icon createBpmnIcon(IBpmnIconFactory iconFactory, String iconName)
   {
     URL iconUrl;
@@ -59,6 +61,7 @@ public class BirtProcessElements implements IExtensibleStandardProcessElementExt
   /**
    * @see ch.ivyteam.ivy.process.element.IExtensibleStandardProcessElementExtension#declareProcessElements(ch.ivyteam.ivy.process.element.IExtensibleProcessElementFactory)
    */
+  @Override
   public void declareProcessElements(IExtensibleProcessElementFactory factory)
   {
     factory.declareProgramInterfaceProcessElement(CreateReportDialog.ID,

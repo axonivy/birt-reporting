@@ -95,6 +95,7 @@ public class CreateDynamicReportDialog extends AbstractUserProcessExtension
      * Sets the configuration
      * @param config the configuration as an String
      */
+    @Override
     public void setConfiguration(String config)
     {
       StringTokenizer st = new StringTokenizer(config, "|");
@@ -110,6 +111,7 @@ public class CreateDynamicReportDialog extends AbstractUserProcessExtension
      * Gets the component attribute of the Editor object
      * @return this
      */
+    @Override
     public Component getComponent()
     {
       return this;
@@ -120,6 +122,7 @@ public class CreateDynamicReportDialog extends AbstractUserProcessExtension
      * 
      * @return The configuration as an String
      */
+    @Override
     public String getConfiguration()
     {
       return dynamicReportClass.getText().trim() + "|"
@@ -130,6 +133,7 @@ public class CreateDynamicReportDialog extends AbstractUserProcessExtension
     /**
      * @return boolean
      */
+    @Override
     public boolean acceptInput()
     {
       if (!dynamicReportClass.getText().equals("") &&
@@ -144,6 +148,7 @@ public class CreateDynamicReportDialog extends AbstractUserProcessExtension
       }
     }
 
+    @Override
     public void setEnvironment(IProcessExtensionConfigurationEditorEnvironment env)
     {
       dynamicReportClass = env.createIvyScriptEditor(null, null,

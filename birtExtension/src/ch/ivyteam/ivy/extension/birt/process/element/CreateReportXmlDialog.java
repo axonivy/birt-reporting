@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.swing.JLabel;
@@ -112,6 +113,7 @@ public class CreateReportXmlDialog extends AbstractUserProcessExtension
       super(new GridLayout(6, 2));
     }
 
+    @Override
     public void setConfiguration(String config)
     {
       StringTokenizer st = new StringTokenizer(config, "|");
@@ -131,6 +133,7 @@ public class CreateReportXmlDialog extends AbstractUserProcessExtension
      * Gets the component attribute of the Editor object
      * @return this
      */
+    @Override
     public Component getComponent()
     {
       return this;
@@ -140,6 +143,7 @@ public class CreateReportXmlDialog extends AbstractUserProcessExtension
      * Gets the configuration
      * @return The configuration as an String
      */
+    @Override
     public String getConfiguration()
     {
       return editorReportDesignFile.getText().trim() + "|"
@@ -152,6 +156,7 @@ public class CreateReportXmlDialog extends AbstractUserProcessExtension
     /**
      * @return boolean
      */
+    @Override
     public boolean acceptInput()
     {
       if (!editorReportDesignFile.getText().equals("") &&
@@ -167,14 +172,15 @@ public class CreateReportXmlDialog extends AbstractUserProcessExtension
       }
     }
 
+    @Override
     public void setEnvironment(IProcessExtensionConfigurationEditorEnvironment env)
     {
       editorReportDesignFile = env.createIvyScriptEditor(null, null, "String");
-      editorOutputFile = env.createIvyScriptEditor(null, null, "ch.ivyteam.ivy.scripting.objects.File");
+      editorOutputFile = env.createIvyScriptEditor(null, null, File.class.getName());
       editorOutputFormat = env
-              .createIvyScriptEditor(null, null, "ch.ivyteam.ivy.extension.birt.OutputFormat");
-      editorReportParameterMap = env.createIvyScriptEditor(null, null, "java.util.Map");
-      editorXmlInput = env.createIvyScriptEditor(null, null, "java.io.InputStream");
+              .createIvyScriptEditor(null, null, OutputFormat.class.getName());
+      editorReportParameterMap = env.createIvyScriptEditor(null, null, Map.class.getName());
+      editorXmlInput = env.createIvyScriptEditor(null, null, InputStream.class.getName());
 
       add(new JLabel("Report Design (without .rptdesign"));
       add(editorReportDesignFile.getComponent());

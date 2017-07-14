@@ -99,6 +99,7 @@ public abstract class AbstractDynamicReport implements IDynamicReport
       EmbeddedImage image = StructureFactory.createEmbeddedImage();
       byte[] imageData = SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<byte[]>()
         {
+          @Override
           public byte[] call() throws Exception
           {
             return Ivy.cms().findContentObjectValue(path, Locale.GERMAN).getContentAsByteArray();
@@ -118,6 +119,7 @@ public abstract class AbstractDynamicReport implements IDynamicReport
    * The create dynamic report method must be implemented
    * @return Created report design
    */
+  @Override
   public abstract ReportDesignHandle createDynamicReport();
 
 }

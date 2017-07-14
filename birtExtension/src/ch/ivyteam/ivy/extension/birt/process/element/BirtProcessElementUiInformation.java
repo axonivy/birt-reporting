@@ -16,6 +16,7 @@ public class BirtProcessElementUiInformation implements IProcessElementUiInforma
    * @see ch.ivyteam.ivy.designer.process.ui.info.IProcessElementUiInformationExtension#getDescription(java.lang.String,
    *      java.util.Locale)
    */
+  @Override
   public String getDescription(String processElementClassName, Locale locale)
   {
     if (processElementClassName.equals(CreateReportDialog.ID))
@@ -37,6 +38,7 @@ public class BirtProcessElementUiInformation implements IProcessElementUiInforma
    * @see ch.ivyteam.ivy.designer.process.ui.info.IProcessElementUiInformationExtension#getName(java.lang.String,
    *      java.util.Locale)
    */
+  @Override
   public String getName(String processElementClassName, Locale locale)
   {
     if (processElementClassName.equals(CreateReportDialog.ID))
@@ -58,6 +60,7 @@ public class BirtProcessElementUiInformation implements IProcessElementUiInforma
    * @see ch.ivyteam.ivy.designer.process.ui.info.IProcessElementUiInformationExtension#getShortName(java.lang.String,
    *      java.util.Locale)
    */
+  @Override
   public String getShortName(String processElementClassName, Locale locale)
   {
     if (processElementClassName.equals(CreateReportDialog.ID))

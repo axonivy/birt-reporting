@@ -16,20 +16,24 @@ import ch.ivyteam.ivy.java.IIvyProjectClassPathExtension;
  */
 public class BirtProjectClassPathExtension implements IIvyProjectClassPathExtension
 {
-
+  private static final String BIRT_BUNDLE_ID = "ch.ivyteam.ivy.extension.birt";
+  
+  @Override
   public List<String> getClassLoaderContributingBundles()
   {
-    return Arrays.asList(new String[] {"ch.ivyteam.ivy.extension.birt"});
+    return Arrays.asList(new String[] {BIRT_BUNDLE_ID});
   }
 
+  @Override
   public List<String> getCompileClassPathContributingBundles()
   {
-    return Arrays.asList(new String[] {"ch.ivyteam.ivy.extension.birt"});
+    return Arrays.asList(new String[] {BIRT_BUNDLE_ID});
   }
 
   /**
    * @see ch.ivyteam.ivy.java.IIvyProjectClassPathExtension#getCompileClassPathAccessRules(java.lang.String)
    */
+  @Override
   public List<IAccessRule> getCompileClassPathAccessRules(String bundleIdentifier)
   {
     return Arrays.asList(new IAccessRule[] {
@@ -41,6 +45,7 @@ public class BirtProjectClassPathExtension implements IIvyProjectClassPathExtens
   /**
    * @see ch.ivyteam.ivy.java.IIvyProjectClassPathExtension#getCompileClassPath(java.lang.String)
    */
+  @Override
   public List<String> getCompileClassPath(String bundleIdentifier)
   {
     return null;
