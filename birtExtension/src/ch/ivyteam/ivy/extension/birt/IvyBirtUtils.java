@@ -1,6 +1,8 @@
 package ch.ivyteam.ivy.extension.birt;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -47,7 +49,14 @@ public class IvyBirtUtils
     if (birtProperties == null)
     {
       birtProperties = new Properties();
-      birtProperties.load(new FileInputStream(new java.io.File(propertiesFileLocation)));
+      File birtPropsFile = new File(propertiesFileLocation);
+      if (birtPropsFile.exists())
+      {
+        try (InputStream is = new FileInputStream(birtPropsFile))
+        {
+          birtProperties.load(is);
+        }
+      }
     }
     return birtProperties;
   }
@@ -59,16 +68,9 @@ public class IvyBirtUtils
    */
   public static String getEngineHome() throws Exception
   {
-    String engineHome = getBirtProperties().getProperty(ENGINE_HOME);
-    if (engineHome != null)
-    {
-      log.info("Birt Engine Home is located on: " + engineHome);
-      return engineHome;
-    }
-    else
-    {
-      throw new Exception("The birt.properties File must provide a property engineHome that contains the full path to the Report Engine");
-    }
+    String engineHome = getBirtProperties().getProperty(ENGINE_HOME, "lib/birtRuntime");
+    log.info("Birt Engine Home is located on: " + engineHome);
+    return engineHome;
   }
   
   public static String getDesignRepository() throws Exception
@@ -87,6 +89,7 @@ public class IvyBirtUtils
     // get a connection url from the environment
     return Ivy.session().getSecurityContext().executeAsSystemUser(new Callable<Map<String, String>>()
               {
+                @Override
                 public Map<String, String> call() throws Exception
                 {
                   Map<String, String> jdbcMap = new HashMap<String, String>();
