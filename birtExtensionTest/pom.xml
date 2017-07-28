@@ -11,7 +11,6 @@
 	<properties>
 		<engine.dir>${project.build.directory}/ivyEngine</engine.dir>
 		<test.application>Portal</test.application>
-        	<ivy.version>6.6.2</ivy.version>
 	</properties>
 
 	<dependencies>
@@ -153,7 +152,7 @@
 				</executions>
 				<configuration>
 					<engineDirectory>${engine.dir}</engineDirectory>
-					<ivyVersion>${ivy.version}</ivyVersion>
+					<ivyVersion>[6.6.2,]</ivyVersion>
 					<iarExcludes>
 						<iarExclude>birt-runtime-osgi*.zip</iarExclude>
 					</iarExcludes>
