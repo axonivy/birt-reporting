@@ -75,8 +75,10 @@
 								<property name="engineHome"
 									value="lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine" />
 								<property name="designRepository" value="${basedir}/reports" />
+								<property name="extDir" value="${engine.dir}/configuration/extensions" />
+								<mkdir dir="${extDir}"/>
 								<echoproperties
-									destfile="${engine.dir}/configuration/extensions/birt.properties">
+									destfile="${extDir}/birt.properties">
 									<propertyset>
 										<propertyref name="engineHome" />
 										<propertyref name="designRepository" />
@@ -115,7 +117,7 @@
 			<plugin>
 				<groupId>com.axonivy.ivy.ci</groupId>
 				<artifactId>project-build-plugin</artifactId>
-				<version>6.7.1</version>
+				<version>6.7.2-SNAPSHOT</version>
 				<extensions>true</extensions>
 				<executions>
 					<execution>
