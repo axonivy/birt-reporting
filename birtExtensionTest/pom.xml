@@ -165,7 +165,6 @@
 				</executions>
 				<configuration>
 					<engineDirectory>${engine.dir}</engineDirectory>
-					<ivyVersion>[6.6.2,]</ivyVersion>
 					<iarExcludes>
 						<iarExclude>birt-runtime-osgi*.zip</iarExclude>
 					</iarExcludes>
