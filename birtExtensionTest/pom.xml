@@ -128,12 +128,12 @@
 			<plugin>
 				<groupId>com.axonivy.ivy.ci</groupId>
 				<artifactId>project-build-plugin</artifactId>
-				<version>7.1.0-SNAPSHOT</version>
+				<version>7.1.0</version>
 				<extensions>true</extensions>
 				<executions>
 					<execution>
 						<!-- avoid classpath library conflicts: we do not want all ivy engine 
-							libararies on the classpath for selenium tests -->
+							libraries on the classpath for selenium tests -->
 						<id>default-ivy-test-properties</id>
 						<configuration>
 							<skipTest>true</skipTest>
