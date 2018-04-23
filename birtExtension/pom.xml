@@ -17,7 +17,7 @@
 		<repository>
 			<id>ivy.nightly.release</id>
 			<layout>p2</layout>
-			<url>https://download.axonivy.works/p2/nightly</url>
+			<url>https://developer.axonivy.com/releases/ivy/nightly/p2/</url>
 		</repository>
 	</repositories>
 
