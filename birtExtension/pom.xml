@@ -22,7 +22,7 @@
 		<repository>
 			<id>ivy.works.p2</id>
 			<layout>p2</layout>
-			<url>https://download.axonivy.works/p2/</url>
+			<url>https://download.axonivy.rocks/p2/nightly/</url>
 		</repository>
 	</repositories>
 
