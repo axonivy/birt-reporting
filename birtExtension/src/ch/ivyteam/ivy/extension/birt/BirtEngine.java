@@ -9,7 +9,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 
 import ch.ivyteam.di.restricted.DiCore;
 import ch.ivyteam.ivy.Advisor;
-import ch.ivyteam.ivy.reporting.restricted.IBirtRuntimeManager;
+import ch.ivyteam.ivy.reporting.restricted.IExtensionBirtRuntimeManager;
 import ch.ivyteam.ivy.server.IServerExtension;
 
 /**
@@ -72,7 +72,7 @@ public class BirtEngine implements IServerExtension
   {
     if (Advisor.getAdvisor().isDesigner())
     {
-      reportEngine = DiCore.getGlobalInjector().getInstance(IBirtRuntimeManager.class)
+      reportEngine = DiCore.getGlobalInjector().getInstance(IExtensionBirtRuntimeManager.class)
               .getBirtEngine(IReportEngine.class, this);
     }
     else
@@ -85,7 +85,7 @@ public class BirtEngine implements IServerExtension
   {
     if (Advisor.getAdvisor().isDesigner())
     {
-      designEngine = DiCore.getGlobalInjector().getInstance(IBirtRuntimeManager.class)
+      designEngine = DiCore.getGlobalInjector().getInstance(IExtensionBirtRuntimeManager.class)
               .getBirtEngine(IDesignEngine.class, this);
     }
     else

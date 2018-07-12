@@ -6,6 +6,9 @@
       <ivyServerExtension
             class="ch.ivyteam.ivy.extension.birt.BirtEngine">
       </ivyServerExtension>
+      <ivyServerExtension
+            class="ch.ivyteam.ivy.reporting.internal.BirtRuntimeManagerExtensionOsgi">
+      </ivyServerExtension>
    </extension>
    <extension
          point="ch.ivyteam.ivy.java.IIvyProjectClassPathExtension">

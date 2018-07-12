@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Fri Mar 11 08:53:29 CET 2016]
-1267039BBFA83D05 3.18 #module
+1267039BBFA83D05 3.23 #module
 >Proto >Proto Collection #zClass
 Tn0 TestReportGeneration Big #zClass
 Tn0 B #cInfo
@@ -40,15 +39,6 @@ TaskTriggered.PRI=2
 .NAM=Test BIRT Extension
 TaskTriggered.EXROL=Everybody' #txt
 Tn0 f0 showInStartList 1 #txt
-Tn0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 Tn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -67,7 +57,9 @@ Tn0 f1 actionTable 'out=in;
 ' #txt
 Tn0 f1 actionCode 'out.reportParas.put("pParameter1","Ich bin Parameter 1");
 out.reportParas.put("pParameter2","Ich bin Parameter 2");
-out.resultFile = new File("Testbericht.doc");' #txt
+out.resultFile = new File("Testbericht.doc");
+
+ivy.log.info("reporting into: "+ out.resultFile.getAbsolutePath());' #txt
 Tn0 f1 type birtextensiontest.Data #txt
 Tn0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
