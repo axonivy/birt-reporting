@@ -16,11 +16,11 @@ pipeline {
       steps {
           script {
             maven cmd:'verify -Divy.engine.list.url=http://zugprobldmas/job/Trunk_All/'
+            archiveArtifacts '*/target/*.jar'
           }
           // -Dproject-build-plugin.version=7.2.0-SNAPSHOT
           // -Divy.engine.list.url=http://zugprobldmas/job/$SRC_JOB/
           // -Divy.engine.version=[7.1.0,]
-          archiveArtifacts '*/target/*.jar'
       }
     }
   }
