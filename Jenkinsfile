@@ -4,7 +4,7 @@ pipeline {
   }
 
   options {
-    buildDiscarder(logRotator(artifactNumToKeepStr: '10'))
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '5'))
   }
 
   triggers {
@@ -15,7 +15,7 @@ pipeline {
     stage('build') {
       steps {
           script {
-            maven cmd:'verify -Divy.engine.list.url=http://zugprobldmas/job/Trunk_All/'
+            maven cmd:'verify -Divy.engine.list.url=http://zugprobldmas/job/Linux_Trunk_DesignerAndServer/'
             archiveArtifacts '*/target/*.jar'
           }
           // -Dproject-build-plugin.version=7.2.0-SNAPSHOT
