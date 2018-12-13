@@ -109,7 +109,7 @@
 						<configuration>
 							<target unless="birt.rt.zip.present">
 								<get
-									src="http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip"
+									src="http://blob.axonivy.works/build/birt-runtime-osgi-4_2_2.zip"
 									dest="${birt.rt.zip}" />
 							</target>
 						</configuration>
