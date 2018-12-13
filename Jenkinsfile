@@ -15,12 +15,10 @@ pipeline {
     stage('build') {
       steps {
           script {
-            maven cmd:'verify -Divy.engine.list.url=http://zugprobldmas/job/Linux_Trunk_DesignerAndServer/ -Divy.engine.version=[7.1.0,]'
+            maven cmd: 'verify -Divy.engine.list.url=http://zugprobldmas/job/Linux_Trunk_DesignerAndServer/ -Divy.engine.version=[7.1.0,]'
             archiveArtifacts '*/target/*.jar'
+            junit '**/target/surefire-reports/**/*.xml' 
           }
-          // -Dproject-build-plugin.version=7.2.0-SNAPSHOT
-          // -Divy.engine.list.url=http://zugprobldmas/job/$SRC_JOB/
-          // -Divy.engine.version=[7.1.0,]
       }
     }
   }
