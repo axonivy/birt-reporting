@@ -14,11 +14,11 @@ pipeline {
   stages {
     stage('build') {
       steps {
-          script {
-            maven cmd: 'verify -Divy.engine.list.url=http://zugprobldmas/job/Trunk_DesignerAndServer/ -Divy.engine.version=[7.1.0,]'
-            archiveArtifacts '*/target/*.jar'
-            junit '**/target/surefire-reports/**/*.xml' 
-          }
+        script {
+          maven cmd: 'verify -Divy.engine.list.url=http://zugprojenkins/job/ivy-core_product/job/master/lastSuccessfulBuild/ -Divy.engine.version=[7.1.0,]'
+        }
+        archiveArtifacts '*/target/*.jar'
+        junit '**/target/surefire-reports/**/*.xml'
       }
     }
   }
