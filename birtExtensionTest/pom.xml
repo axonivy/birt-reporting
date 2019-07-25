@@ -5,13 +5,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.axonivy.ivy.supplements</groupId>
 	<artifactId>birt-extension-test</artifactId>
-	<version>7.2.0-SNAPSHOT</version>
+	<version>7.4.0-SNAPSHOT</version>
 	<packaging>iar</packaging>
 
 	<properties>
 		<engine.dir>${project.build.directory}/ivyEngine</engine.dir>
 		<test.application>Portal</test.application>
-		<project-build-plugin.version>7.2.0</project-build-plugin.version>
+		<project-build-plugin.version>7.4.0</project-build-plugin.version>
 	</properties>
 
     <pluginRepositories>
@@ -71,7 +71,6 @@
 
 	<build>
 		<testSourceDirectory>src_test</testSourceDirectory>
-		<testOutputDirectory>classes</testOutputDirectory>
 
 		<plugins>
 			<plugin>
@@ -85,7 +84,7 @@
 						<configuration>
 							<target>
 								<property name="engineHome"
-									value="lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine" />
+									value="lib/birtRuntime/ReportEngine/platform" />
 								<property name="designRepository" value="${basedir}/reports" />
 								<property name="extDir" value="${engine.dir}/configuration/extensions" />
 								<mkdir dir="${extDir}"/>
@@ -96,7 +95,7 @@
 										<propertyref name="designRepository" />
 									</propertyset>
 								</echoproperties>
-								<property name="birt.rt.zip" value="${basedir}/birt-runtime-osgi-4_2_2.zip" />
+								<property name="birt.rt.zip" value="${basedir}/birt-runtime-osgi-4_8_0.zip" />
 								<available file="${birt.rt.zip}" property="birt.rt.zip.present" />
 							</target>
 							<exportAntProperties>true</exportAntProperties>
@@ -109,7 +108,7 @@
 						<configuration>
 							<target unless="birt.rt.zip.present">
 								<get
-									src="http://blob.axonivy.works/build/birt-runtime-osgi-4_2_2.zip"
+									src="http://blob.axonivy.works/build/birt-runtime-osgi-4_8_0.zip"
 									dest="${birt.rt.zip}" />
 							</target>
 						</configuration>
