@@ -6,10 +6,19 @@ Provides BIRT report generation activities for the Axon.ivy Designer and allows 
 
 ### Installation
 The installation procedure is exactly the same for Axon.ivy Designer and Engine. Therefore we're refer them as generic <i>Axon.ivy product</i> here.
-1. Download the latest BIRT extension from our [releases](https://github.com/ivy-supplements/birt-reporting/releases/latest) into the `dropins` directory of your Axon.ivy product.
-2. Download the [birt-runtime-osgi-4_2_2](http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip) or any newer may still compliant version. Unpack the ZIP into a new `system/lib/birtRuntime` directory within the Axon.ivy product.
+1. Download the BIRT extension that matches your Axon.ivy product from our [releases](https://github.com/ivy-supplements/birt-reporting/releases) into the `dropins` directory of your Axon.ivy product.
+2. Download the corresponding [birt-runtime-osgi](https://download.eclipse.org/birt/downloads/#runtime). Unpack the ZIP into a new `system/lib/birtRuntime` directory within the Axon.ivy product.
 3. Create the `configuration/extensions/birt.properties` file. Within you have to set the `birtRuntime` property so that it references your unpacked runtime libraries. E.g.
-`engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine`
+`engineHome=system/lib/birtRuntime/ReportEngine/platform`
+
+### Versions
+
+|Axon.ivy |Birt Extension |Birt Runtime |Engine Home |
+|---------|---------------|-------------|------------|
+|>=7.4    |[7.4](https://github.com/ivy-supplements/birt-reporting/releases/latest) |[4.8.0](https://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4.8.0-201806261756/birt-runtime-osgi-4.8.0-20180626.zip) |`engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_8_0/ReportEngine/platform` |
+|6.7..7.3 |[6.7](https://github.com/ivy-supplements/birt-reporting/releases/tag/6.7.0) |[4.2.2](http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip) | `engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine` |
+|6.6      |[6.6](https://github.com/ivy-supplements/birt-reporting/releases/tag/6.6.0) |[4.2.2](http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip) | `engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine` |
+|< 6.5    |[6.0](https://github.com/ivy-supplements/birt-reporting/releases/tag/6.0.0) |[4.2.2](http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip) | `engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine` |
 
 ### Design a report
 To design reports you can choose one of these tools:
