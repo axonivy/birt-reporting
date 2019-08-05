@@ -16,9 +16,9 @@ The installation procedure is exactly the same for Axon.ivy Designer and Engine.
 |Axon.ivy |Birt Extension |Birt Runtime |Engine Home |
 |---------|---------------|-------------|------------|
 |>=7.4    |[7.4](https://github.com/ivy-supplements/birt-reporting/releases/latest) |[4.8.0](https://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4.8.0-201806261756/birt-runtime-osgi-4.8.0-20180626.zip) |`engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_8_0/ReportEngine/platform` |
-|6.7..7.3 |[6.7](https://github.com/ivy-supplements/birt-reporting/releases/tag/6.7.0) |[4.2.2](http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip) | `engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine` |
+|6.7 .. 7.3 |[6.7](https://github.com/ivy-supplements/birt-reporting/releases/tag/6.7.0) |[4.2.2](http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip) | `engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine` |
 |6.6      |[6.6](https://github.com/ivy-supplements/birt-reporting/releases/tag/6.6.0) |[4.2.2](http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip) | `engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine` |
-|< 6.5    |[6.0](https://github.com/ivy-supplements/birt-reporting/releases/tag/6.0.0) |[4.2.2](http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip) | `engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine` |
+|<= 6.5    |[6.0](https://github.com/ivy-supplements/birt-reporting/releases/tag/6.0.0) |[4.2.2](http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_2_2-201302161152/birt-runtime-osgi-4_2_2.zip) | `engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_2_2/ReportEngine` |
 
 ### Design a report
 To design reports you can choose one of these tools:
