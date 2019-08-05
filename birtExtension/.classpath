@@ -6,7 +6,6 @@
 	<classpathentry kind="lib" path="lib/chartengineapi.jar"/>
 	<classpathentry kind="lib" path="lib/chartexamplescoreapi.jar"/>
 	<classpathentry kind="lib" path="lib/chartitemapi.jar"/>
-	<classpathentry kind="lib" path="lib/com.ibm.icu_4.4.2.v20110823.jar"/>
 	<classpathentry kind="lib" path="lib/commons-cli-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/coreapi.jar"/>
 	<classpathentry kind="lib" path="lib/crosstabcoreapi.jar"/>
@@ -21,12 +20,14 @@
 	<classpathentry kind="lib" path="lib/modelapi.jar"/>
 	<classpathentry kind="lib" path="lib/modelodaapi.jar"/>
 	<classpathentry kind="lib" path="lib/odadesignapi.jar"/>
-	<classpathentry kind="lib" path="lib/org.apache.commons.codec_1.3.0.v201101211617.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.birt.axis.overlay_4.2.2.v201210101433.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.emf.common_2.8.0.v20130125-0546.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore_2.8.3.v20130125-0546.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore.xmi_2.8.1.v20130125-0546.jar"/>
-	<classpathentry kind="lib" path="lib/org.w3c.css.sac_1.3.0.v200805290154.jar"/>
 	<classpathentry kind="lib" path="lib/scriptapi.jar"/>
+	<classpathentry kind="lib" path="lib/org.apache.commons.codec_1.9.0.v20170208-1614.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.birt.axis.overlay_4.8.0.v201806261756.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.common_2.14.0.v20180527-1134.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore_2.14.0.v20180529-1144.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore.xmi_2.14.0.v20180129-1548.jar"/>
+	<classpathentry kind="lib" path="lib/org.w3c.css.sac_1.3.1.v200903091627.jar"/>
+	<classpathentry kind="lib" path="lib/odaconnectivity.jar"/>
+	<classpathentry kind="lib" path="lib/com.ibm.icu_58.2.0.v20170418-1837.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

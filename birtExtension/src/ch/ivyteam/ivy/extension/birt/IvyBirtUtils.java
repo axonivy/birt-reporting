@@ -122,7 +122,7 @@ public class IvyBirtUtils
     }
     catch (Exception e)
     {
-      log.error(e);
+      log.error("Creation of report engine failed", e);
       return null;
     }
   }
@@ -141,7 +141,7 @@ public class IvyBirtUtils
     }
     catch (Exception e)
     {
-      log.error(e);
+      log.error("Creation of design engine failed", e);
       return null;
     }
   }
