@@ -15,10 +15,9 @@ pipeline {
     stage('build') {
       steps {
         script {
-          maven cmd: 'verify ' +
+          maven cmd: 'clean verify ' +
           '-Dproject-build-plugin.version=7.4.0-SNAPSHOT ' +
-          '-Divy.engine.list.url=http://zugprojenkins/job/ivy-core_product/job/master/lastSuccessfulBuild/ ' +
-          '-Divy.engine.version=[7.1.0,]'
+          '-Divy.engine.list.url=http://zugprojenkins/job/ivy-core_product/job/master/lastSuccessfulBuild/ '
         }
         archiveArtifacts '*/target/*.jar'
         junit '**/target/surefire-reports/**/*.xml'
