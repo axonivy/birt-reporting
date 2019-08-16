@@ -1,4 +1,19 @@
-# Java
-src_dataClasses/*.java
+# general
+Thumbs.db
+.DS_Store
+*~
+*.log
+
+# java
+*.class
+hs_err_pid*
+
+# maven
+target/
+
+# ivy
+classes/
+src_dataClasses/
+src_wsproc/
 
 /birt-runtime-osgi*.zip
