@@ -32,7 +32,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="IVY_CONTAINER"/>
-	<classpathentry kind="con" path="ULC_CONTAINER"/>
 	<classpathentry kind="src" path="src_wsproc">
 		<attributes>
 			<attribute name="optional" value="true"/>
