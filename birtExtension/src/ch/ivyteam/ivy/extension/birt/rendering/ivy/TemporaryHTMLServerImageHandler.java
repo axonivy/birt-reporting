@@ -22,11 +22,7 @@ public class TemporaryHTMLServerImageHandler extends HTMLServerImageHandler
     {
       sessionId = Ivy.session().getHttpSessionIdentifier();
     }
-    catch (EnvironmentNotAvailableException e)
-    {
-      e.printStackTrace();
-    }
-    catch (PersistencyException e)
+    catch (PersistencyException | EnvironmentNotAvailableException e)
     {
       e.printStackTrace();
     }

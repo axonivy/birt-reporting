@@ -4,7 +4,5 @@ import org.eclipse.birt.report.model.api.ReportDesignHandle;
 
 public interface IDynamicReport
 {
-
-  public ReportDesignHandle createDynamicReport();
-
+  ReportDesignHandle createDynamicReport();
 }

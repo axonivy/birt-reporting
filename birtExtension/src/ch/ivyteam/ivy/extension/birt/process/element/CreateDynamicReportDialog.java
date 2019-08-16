@@ -36,14 +36,8 @@ public class CreateDynamicReportDialog extends AbstractUserProcessExtension
   private IvyBirtReportService birtService;
   private IIvyScriptContext context;
 
-  /**
-   * @see ch.ivyteam.ivy.process.extension.IUserProcessExtension#perform(ch.ivyteam.ivy.process.engine.IRequestId,
-   *      ch.ivyteam.ivy.scripting.objects.CompositeObject,
-   *      ch.ivyteam.ivy.scripting.language.IIvyScriptContext)
-   */
   @Override
-  public CompositeObject perform(IRequestId requestId, CompositeObject in,
-          IIvyScriptContext scriptContext) throws Exception
+  public CompositeObject perform(IRequestId requestId, CompositeObject in,IIvyScriptContext scriptContext) throws Exception
   {
 
     this.context = scriptContext;
@@ -117,11 +111,6 @@ public class CreateDynamicReportDialog extends AbstractUserProcessExtension
       return this;
     }
 
-    /**
-     * Gets the configuration
-     * 
-     * @return The configuration as an String
-     */
     @Override
     public String getConfiguration()
     {
@@ -130,22 +119,12 @@ public class CreateDynamicReportDialog extends AbstractUserProcessExtension
               + editorOutputFormat.getText().trim();
     }
 
-    /**
-     * @return boolean
-     */
     @Override
     public boolean acceptInput()
     {
-      if (!dynamicReportClass.getText().equals("") &&
+      return  !dynamicReportClass.getText().equals("") &&
               !editorOutputFile.getText().equals("") &&
-              !editorOutputFormat.getText().equals(""))
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
+              !editorOutputFormat.getText().equals("");
     }
 
     @Override

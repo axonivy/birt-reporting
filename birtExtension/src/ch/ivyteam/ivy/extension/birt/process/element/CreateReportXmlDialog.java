@@ -38,11 +38,6 @@ public class CreateReportXmlDialog extends AbstractUserProcessExtension
   private IvyBirtReportService birtService;
   private IIvyScriptContext context;
 
-  /**
-   * @see ch.ivyteam.ivy.process.extension.IUserProcessExtension#perform(ch.ivyteam.ivy.process.engine.IRequestId,
-   *      ch.ivyteam.ivy.scripting.objects.CompositeObject,
-   *      ch.ivyteam.ivy.scripting.language.IIvyScriptContext)
-   */
   @Override
   @SuppressWarnings({"rawtypes", "unchecked"})
   public CompositeObject perform(IRequestId requestId, CompositeObject in,

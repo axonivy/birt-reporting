@@ -37,15 +37,9 @@ public class CreateReportDialog extends AbstractUserProcessExtension
   private IvyBirtReportService birtService;
   private IIvyScriptContext context;
 
-  /**
-   * @see ch.ivyteam.ivy.process.extension.IUserProcessExtension#perform(ch.ivyteam.ivy.process.engine.IRequestId,
-   *      ch.ivyteam.ivy.scripting.objects.CompositeObject,
-   *      ch.ivyteam.ivy.scripting.language.IIvyScriptContext)
-   */
   @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public CompositeObject perform(IRequestId requestId, CompositeObject in,
-          IIvyScriptContext scriptContext) throws Exception
+  public CompositeObject perform(IRequestId requestId, CompositeObject in, IIvyScriptContext scriptContext) throws Exception
   {
 
     this.context = scriptContext;
@@ -80,7 +74,7 @@ public class CreateReportDialog extends AbstractUserProcessExtension
     // Add data source parameters
     if (parameterMap == null)
     {
-      parameterMap = new HashMap<String, Object>();
+      parameterMap = new HashMap<>();
     }
     parameterMap.putAll(IvyBirtUtils.getDatabaseConnectionPropertiesMap(dataSource));
     getService().generateSingleReport(reportDesign, outputFile, parameterMap, format);
@@ -105,19 +99,11 @@ public class CreateReportDialog extends AbstractUserProcessExtension
     private IIvyScriptEditor editorOutputFile;
     private IIvyScriptEditor editorOutputFormat;
 
-    /**
-     * Constructor for the Editor object
-     */
     public Editor()
     {
       super(new GridLayout(6, 2));
     }
 
-    /**
-     * Sets the configuration
-     * 
-     * @param config the configuration as an String
-     */
     @Override
     public void setConfiguration(String config)
     {
@@ -134,22 +120,12 @@ public class CreateReportDialog extends AbstractUserProcessExtension
         editorDataSource.setText(st.nextElement().toString());
     }
 
-    /**
-     * Gets the component attribute of the Editor object
-     * 
-     * @return this
-     */
     @Override
     public Component getComponent()
     {
       return this;
     }
 
-    /**
-     * Gets the configuration
-     * 
-     * @return The configuration as an String
-     */
     @Override
     public String getConfiguration()
     {
@@ -161,24 +137,14 @@ public class CreateReportDialog extends AbstractUserProcessExtension
 
     }
 
-    /**
-     * @return boolean
-     */
     @Override
     public boolean acceptInput()
     {
-      if (!editorReportDesignFile.getText().equals("") &&
+      return  !editorReportDesignFile.getText().equals("") &&
               !editorOutputFile.getText().equals("") &&
               !editorReportParameterMap.getText().equals("") &&
               !editorDataSource.getText().equals("") &&
-              !editorOutputFormat.getText().equals(""))
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
+              !editorOutputFormat.getText().equals("");
     }
 
     @Override

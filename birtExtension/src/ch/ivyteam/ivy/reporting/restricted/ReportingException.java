@@ -25,5 +25,4 @@ public class ReportingException extends Exception
   {
     super(cause);
   }
-
 }

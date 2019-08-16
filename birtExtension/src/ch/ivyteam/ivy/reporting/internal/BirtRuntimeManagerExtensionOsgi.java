@@ -148,14 +148,11 @@ public class BirtRuntimeManagerExtensionOsgi extends AbstractManager implements 
     }
   }
 
-  /**
-   * @see ch.ivyteam.ivy.reporting.restricted.IExtensionBirtRuntimeManager#getAvailableThemes(java.lang.String)
-   */
   @Override
   @SuppressWarnings("unchecked")
   public List<String> getAvailableThemes(String designPath) throws ReportingException
   {
-    List<String> themes = new LinkedList<String>();
+    List<String> themes = new LinkedList<>();
     try
     {
       SessionHandle session = fDesignEngine.newSessionHandle(null);
@@ -179,14 +176,11 @@ public class BirtRuntimeManagerExtensionOsgi extends AbstractManager implements 
     }
   }
 
-  /**
-   * @see ch.ivyteam.ivy.reporting.restricted.IExtensionBirtRuntimeManager#getDesignParameters(java.lang.String)
-   */
   @Override
   @SuppressWarnings("unchecked")
   public List<String> getDesignParameters(String designPath) throws ReportingException
   {
-    List<String> parameters = new LinkedList<String>();
+    List<String> parameters = new LinkedList<>();
     try
     {
       SessionHandle session = fDesignEngine.newSessionHandle(null);
@@ -229,9 +223,6 @@ public class BirtRuntimeManagerExtensionOsgi extends AbstractManager implements 
     return fDesignEngine;
   }
 
-  /**
-   * @see ch.ivyteam.ivy.reporting.restricted.IExtensionBirtRuntimeManager#createSimpleReport(String, List, File, String, Map)
-   */
   @Override
   public void createSimpleReport(
           String reportDesign, 
@@ -282,9 +273,6 @@ public class BirtRuntimeManagerExtensionOsgi extends AbstractManager implements 
     }
   }
 
-  /**
-   * @see ch.ivyteam.ivy.reporting.restricted.IExtensionBirtRuntimeManager#isStarted()
-   */
   @Override
   public boolean isStarted()
   {

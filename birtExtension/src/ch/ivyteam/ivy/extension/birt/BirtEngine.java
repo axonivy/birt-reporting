@@ -21,25 +21,21 @@ import ch.ivyteam.ivy.server.IServerExtension;
 public class BirtEngine implements IServerExtension
 {
   public static final String EXTENSION_ID = "ch.ivyteam.ivy.extension.birt.BirtEngine";
+
+  private static final Logger LOGGER = Logger.getLogger(BirtEngine.class);
+  
   private IReportEngine reportEngine;
   /* Report engine for report design. Is used to create dynamic reports */
   @SuppressWarnings("unused")
   private IDesignEngine designEngine;
   private IvyBirtReportService reportService;
-  private Logger log = Logger.getLogger("ch.ivyteam.ivy.extension.birt.BirtEngine");
 
-  /**
-   * @see ch.ivyteam.ivy.server.IServerExtension#getIdentifier()
-   */
   @Override
   public String getIdentifier()
   {
     return EXTENSION_ID;
   }
 
-  /**
-   * @see ch.ivyteam.ivy.lifecycle.ILifecycle#getName()
-   */
   @Override
   public String getName()
   {
@@ -51,9 +47,6 @@ public class BirtEngine implements IServerExtension
     return reportEngine;
   }
 
-  /**
-   * @see ch.ivyteam.ivy.lifecycle.ILifecycle#start(org.eclipse.core.runtime.IProgressMonitor)
-   */
   @Override
   public void start(IProgressMonitor monitor) throws Exception
   {
@@ -72,8 +65,7 @@ public class BirtEngine implements IServerExtension
   {
     if (Advisor.getAdvisor().isDesigner())
     {
-      reportEngine = DiCore.getGlobalInjector().getInstance(IExtensionBirtRuntimeManager.class)
-              .getBirtEngine(IReportEngine.class, this);
+      reportEngine = DiCore.getGlobalInjector().getInstance(IExtensionBirtRuntimeManager.class).getBirtEngine(IReportEngine.class, this);
     }
     else
     {
@@ -85,8 +77,7 @@ public class BirtEngine implements IServerExtension
   {
     if (Advisor.getAdvisor().isDesigner())
     {
-      designEngine = DiCore.getGlobalInjector().getInstance(IExtensionBirtRuntimeManager.class)
-              .getBirtEngine(IDesignEngine.class, this);
+      designEngine = DiCore.getGlobalInjector().getInstance(IExtensionBirtRuntimeManager.class).getBirtEngine(IDesignEngine.class, this);
     }
     else
     {
@@ -94,9 +85,6 @@ public class BirtEngine implements IServerExtension
     }
   }
 
-  /**
-   * @see ch.ivyteam.ivy.lifecycle.ILifecycle#stop(org.eclipse.core.runtime.IProgressMonitor)
-   */
   @Override
   public void stop(IProgressMonitor monitor) throws Exception
   {
@@ -116,12 +104,12 @@ public class BirtEngine implements IServerExtension
     String repository = IvyBirtUtils.getDesignRepository();
     if (StringUtils.isNotBlank(repository))
     {
-      log.info("Report Design Repository is provided at: " + repository);
+      LOGGER.info("Report Design Repository is provided at: " + repository);
       reportService = new IvyBirtReportService(reportEngine, repository);
     }
     else
     {
-      log.warn("No Report Design Repository is provided");
+      LOGGER.warn("No Report Design Repository is provided");
       reportService = new IvyBirtReportService(reportEngine);
     }
   }

@@ -11,11 +11,9 @@ import ch.ivyteam.ivy.scripting.objects.File;
  * HTML Render options for Ivy. Some attributes must be specified for Ivy, in
  * order to display HTML reports correctly
  * @author mde
- * 
  */
 public class IvyHtmlRenderOptions extends HTMLRenderOption
 {
-
   public IvyHtmlRenderOptions(File outputFile, RenderOption option)
   {
     super(option);
@@ -25,7 +23,6 @@ public class IvyHtmlRenderOptions extends HTMLRenderOption
     Ivy.log().info(url);
     setBaseImageURL(url);
 
-    // Check if temporary file
     if (outputFile.isTemporary())
     {
       setImageHandler(new TemporaryHTMLServerImageHandler());
@@ -33,7 +30,6 @@ public class IvyHtmlRenderOptions extends HTMLRenderOption
     else
     {
       setImageHandler(new HTMLServerImageHandler());
-      // setBaseImageURL("./");
     }
   }
 }

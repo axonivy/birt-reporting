@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.concurrent.Callable;
 
 import org.apache.log4j.Logger;
 import org.eclipse.birt.core.framework.Platform;
@@ -27,17 +26,17 @@ import ch.ivyteam.ivy.environment.Ivy;
  */
 public class IvyBirtUtils
 {
+  private static final Logger LOGGER = Logger.getLogger(BirtEngine.class);
+  private static final String PROPERTIES_FILE_LOCATION = "configuration/extensions/birt.properties";
+  private static final String BIRT_ENGINE_HOME = "engineHome";
+  private static final String DESING_REPOSITORY = "designRepository";
+
   /* Extension properties. File located in configuration/extensions/birt.properties */
   private static Properties birtProperties;
-  /* Default location for the properties file */
-  private static String propertiesFileLocation = "configuration/extensions/birt.properties";
-  /* Logger for the Extension */
-  private static Logger log = Logger.getLogger("ch.ivyteam.ivy.extension.birt.BirtEngine");
-
-  /* Path to the report engine runtime */
-  public static final String ENGINE_HOME = "engineHome";
-  /* Path to the report design repository, that contains the design files */
-  public static final String DESING_REPOSITORY = "designRepository";
+  
+  private IvyBirtUtils()
+  {
+  }
   
   /**
    * Load BIRT properties file for Ivy Extension
@@ -49,7 +48,7 @@ public class IvyBirtUtils
     if (birtProperties == null)
     {
       birtProperties = new Properties();
-      File birtPropsFile = new File(propertiesFileLocation);
+      File birtPropsFile = new File(PROPERTIES_FILE_LOCATION);
       if (birtPropsFile.exists())
       {
         try (InputStream is = new FileInputStream(birtPropsFile))
@@ -68,8 +67,8 @@ public class IvyBirtUtils
    */
   public static String getEngineHome() throws Exception
   {
-    String engineHome = getBirtProperties().getProperty(ENGINE_HOME, "lib/birtRuntime");
-    log.info("Birt Engine Home is located on: " + engineHome);
+    String engineHome = getBirtProperties().getProperty(BIRT_ENGINE_HOME, "lib/birtRuntime");
+    LOGGER.info("Birt Engine Home is located on: " + engineHome);
     return engineHome;
   }
   
@@ -78,38 +77,24 @@ public class IvyBirtUtils
     return getBirtProperties().getProperty(DESING_REPOSITORY);
   }
 
-  /**
-   * @param databaseName
-   * @return map of connection properties for the given data source
-   * @throws Exception
-   */
-  public static Map<String, String> getDatabaseConnectionPropertiesMap(final String databaseName)
-          throws Exception
+  public static Map<String, String> getDatabaseConnectionPropertiesMap(final String databaseName) throws Exception
   {
     // get a connection url from the environment
-    return Ivy.session().getSecurityContext().executeAsSystemUser(new Callable<Map<String, String>>()
-              {
-                @Override
-                public Map<String, String> call() throws Exception
-                {
-                  Map<String, String> jdbcMap = new HashMap<String, String>();
-                  IExternalDatabaseConfiguration db = Ivy.wf().getApplication().findExternalDatabaseConfiguration(databaseName);
-                  if (db != null)
-                  {
-                    DatabaseConnectionConfiguration externalDbConfig = db.getDatabaseConnectionConfiguration();
-                    jdbcMap.put("jdbcDriverClass", externalDbConfig.getDriverName());
-                    jdbcMap.put("jdbcDriverUrl", externalDbConfig.getConnectionUrl());
-                    jdbcMap.put("jdbcUsername", externalDbConfig.getUserName());
-                    jdbcMap.put("jdbcPassword", externalDbConfig.getPassword());
-                  }
-                  return jdbcMap;
-                }
-              });
+    return Ivy.session().getSecurityContext().executeAsSystemUser(() -> {
+      Map<String, String> jdbcMap = new HashMap<>();
+      IExternalDatabaseConfiguration db = Ivy.wf().getApplication().findExternalDatabaseConfiguration(databaseName);
+      if (db != null)
+      {
+        DatabaseConnectionConfiguration externalDbConfig = db.getDatabaseConnectionConfiguration();
+        jdbcMap.put("jdbcDriverClass", externalDbConfig.getDriverName());
+        jdbcMap.put("jdbcDriverUrl", externalDbConfig.getConnectionUrl());
+        jdbcMap.put("jdbcUsername", externalDbConfig.getUserName());
+        jdbcMap.put("jdbcPassword", externalDbConfig.getPassword());
+      }
+      return jdbcMap;
+    });
   }
 
-  /**
-   * @return report Engine instance
-   */
   public static IReportEngine getReportEngineInstance()
   {
     try
@@ -122,14 +107,11 @@ public class IvyBirtUtils
     }
     catch (Exception e)
     {
-      log.error("Creation of report engine failed", e);
+      LOGGER.error("Creation of report engine failed", e);
       return null;
     }
   }
 
-  /**
-   * @return design Engine instance
-   */
   public static IDesignEngine getDesignEngineInstance()
   {
     try
@@ -141,7 +123,7 @@ public class IvyBirtUtils
     }
     catch (Exception e)
     {
-      log.error("Creation of design engine failed", e);
+      LOGGER.error("Creation of design engine failed", e);
       return null;
     }
   }

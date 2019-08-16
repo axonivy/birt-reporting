@@ -62,14 +62,8 @@ public class BirtRuntimeManagerDisabled extends AbstractManager implements IExte
   }
 
   @Override
-  public void doStop(SubMonitor monitor)
-  {
-  }
-
-  @Override
   public <T> T getBirtEngine(Class<T> birtEngineClass, Object someContextObject)
   {
     throw new IllegalStateException("Not implemented");
   }
-
 }

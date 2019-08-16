@@ -10,14 +10,10 @@ import ch.ivyteam.ivy.designer.process.ui.editor.palette.IIvyProcessPaletteExten
  */
 public class BirtProcessPalette implements IIvyProcessPaletteExtension
 {
-  /** The name of the SAP palette group */
   private static final String BIRT_GROUP = "ch.ivyteam.ivy.extension.birt.BirtGroup";
-  private final String BIRT_GROUP_LABEL = "BIRT";
-  private final int BIRT_GROUP_ID = 10000; 
+  private static final String BIRT_GROUP_LABEL = "BIRT";
+  private static final int BIRT_GROUP_ID = 10000; 
 
-  /**
-   * @see ch.ivyteam.ivy.designer.process.ui.editor.palette.IIvyProcessPaletteExtension#addEntries(ch.ivyteam.ivy.designer.process.ui.editor.palette.IIvyProcessPalette)
-   */
   @Override
   public void addEntries(IIvyProcessPalette palette)
   {
@@ -26,13 +22,9 @@ public class BirtProcessPalette implements IIvyProcessPaletteExtension
     palette.addProcessElementEntry(BIRT_GROUP, CreateDynamicReportDialog.ID, 1002);
   }
 
-  /**
-   * @see ch.ivyteam.ivy.designer.process.ui.editor.palette.IIvyProcessPaletteExtension#addGroups(ch.ivyteam.ivy.designer.process.ui.editor.palette.IIvyProcessPalette)
-   */
   @Override
   public void addGroups(IIvyProcessPalette palette)
   {
     palette.addGroup(BIRT_GROUP, BIRT_GROUP_LABEL, BIRT_GROUP_ID);
   }
-
 }

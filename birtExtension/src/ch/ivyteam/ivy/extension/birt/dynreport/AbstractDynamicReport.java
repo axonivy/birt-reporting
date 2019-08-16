@@ -10,11 +10,11 @@ import org.eclipse.birt.report.model.api.SessionHandle;
 import org.eclipse.birt.report.model.api.StructureFactory;
 import org.eclipse.birt.report.model.api.elements.structures.EmbeddedImage;
 
+import com.ibm.icu.util.ULocale;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.extension.birt.IvyBirtUtils;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
-
-import com.ibm.icu.util.ULocale;
 
 /**
  * Abstract implementation for a dynamic report. Any dynamic report must be
@@ -114,12 +114,4 @@ public abstract class AbstractDynamicReport implements IDynamicReport
       e.printStackTrace();
     }
   }
-
-  /**
-   * The create dynamic report method must be implemented
-   * @return Created report design
-   */
-  @Override
-  public abstract ReportDesignHandle createDynamicReport();
-
 }

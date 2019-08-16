@@ -21,30 +21,24 @@ public class BirtProjectClassPathExtension implements IIvyProjectClassPathExtens
   @Override
   public List<String> getClassLoaderContributingBundles()
   {
-    return Arrays.asList(new String[] {BIRT_BUNDLE_ID});
+    return Arrays.asList(BIRT_BUNDLE_ID);
   }
 
   @Override
   public List<String> getCompileClassPathContributingBundles()
   {
-    return Arrays.asList(new String[] {BIRT_BUNDLE_ID});
+    return Arrays.asList(BIRT_BUNDLE_ID);
   }
 
-  /**
-   * @see ch.ivyteam.ivy.java.IIvyProjectClassPathExtension#getCompileClassPathAccessRules(java.lang.String)
-   */
   @Override
   public List<IAccessRule> getCompileClassPathAccessRules(String bundleIdentifier)
   {
-    return Arrays.asList(new IAccessRule[] {
-        JavaCore.newAccessRule(new Path("ch.ivyteam.ivy.extension.birt/*"), IAccessRule.K_ACCESSIBLE),
-        EXCLUDE_ALL_OTHER_RULE
-    });
+    return Arrays.asList(
+            JavaCore.newAccessRule(new Path("ch.ivyteam.ivy.extension.birt/*"),
+            IAccessRule.K_ACCESSIBLE),
+            EXCLUDE_ALL_OTHER_RULE);
   }
 
-  /**
-   * @see ch.ivyteam.ivy.java.IIvyProjectClassPathExtension#getCompileClassPath(java.lang.String)
-   */
   @Override
   public List<String> getCompileClassPath(String bundleIdentifier)
   {

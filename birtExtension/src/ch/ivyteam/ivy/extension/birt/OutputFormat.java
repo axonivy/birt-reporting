@@ -6,8 +6,8 @@ public enum OutputFormat
   DOC("doc", ".doc"),
   PDF("pdf", ".pdf");
 
-  private String suffix;
-  private String name;
+  private final String suffix;
+  private final String name;
 
   private OutputFormat(String name, String suffix)
   {

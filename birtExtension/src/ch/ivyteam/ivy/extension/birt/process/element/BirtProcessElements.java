@@ -18,49 +18,34 @@ import ch.ivyteam.ivy.process.element.IExtensibleStandardProcessElementExtension
  */
 public class BirtProcessElements implements IExtensibleStandardProcessElementExtension
 {
-  private final String NAME = "BIRTProcessElements";
-
-  /**
-   * @see ch.ivyteam.ivy.components.IStandardProcessElementExtension#getName()
-   */
   @Override
   public String getName()
   {
-    return NAME;
+    return "BIRTProcessElements";
   }
 
-  /**
-   * @see ch.ivyteam.ivy.components.IStandardProcessElementExtension#createBpmnIcon(ch.ivyteam.ivy.process.element.IBpmnIconFactory,
-   *      java.lang.String)
-   */
   @Override
   public Icon createBpmnIcon(IBpmnIconFactory iconFactory, String iconName)
   {
-    URL iconUrl;
     if (iconName.equals(CreateReportDialog.ICON) || iconName.equals(CreateReportXmlDialog.ICON))
     {
-      iconUrl = getClass().getClassLoader().getResource(CreateReportDialog.ICON + ".png");
+      URL iconUrl = getClass().getClassLoader().getResource(CreateReportDialog.ICON + ".png");
       if (iconUrl != null)
       {
-        return iconFactory.createActivityBpmnIcon(
-                new ImageIcon(iconUrl), false);
+        return iconFactory.createActivityBpmnIcon(new ImageIcon(iconUrl), false);
       }
     }
     else if (iconName.equals(CreateDynamicReportDialog.ICON))
     {
-      iconUrl = getClass().getClassLoader().getResource(CreateDynamicReportDialog.ICON + ".png");
+      URL iconUrl = getClass().getClassLoader().getResource(CreateDynamicReportDialog.ICON + ".png");
       if (iconUrl != null)
       {
-        return iconFactory.createActivityBpmnIcon(
-                new ImageIcon(iconUrl), false);
+        return iconFactory.createActivityBpmnIcon(new ImageIcon(iconUrl), false);
       }
     }
     return null;
   }
 
-  /**
-   * @see ch.ivyteam.ivy.process.element.IExtensibleStandardProcessElementExtension#declareProcessElements(ch.ivyteam.ivy.process.element.IExtensibleProcessElementFactory)
-   */
   @Override
   public void declareProcessElements(IExtensibleProcessElementFactory factory)
   {

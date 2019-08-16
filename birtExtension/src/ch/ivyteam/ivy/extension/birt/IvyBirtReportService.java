@@ -26,25 +26,24 @@ public class IvyBirtReportService
 {
   /* Report Suffix of Birt Report Design files */
   private static final String BIRT_REPORT_SUFFIX = ".rptdesign";
-  /* The BIRT Report engine */
+
   private IReportEngine engine;
-  /* The path to report design repository */
   private String designRepository;
 
-  public IvyBirtReportService(IReportEngine _engine)
+  public IvyBirtReportService(IReportEngine engine)
   {
-    engine = _engine;
+    this.engine = engine;
   }
 
-  public IvyBirtReportService(IReportEngine _engine, String _designRepository)
+  public IvyBirtReportService(IReportEngine engine, String designRepository)
   {
-    this(_engine);
-    designRepository = _designRepository;
+    this(engine);
+    this.designRepository = designRepository;
   }
 
-  public void setReportEngine(IReportEngine _engine)
+  public void setReportEngine(IReportEngine engine)
   {
-    engine = _engine;
+    this.engine = engine;
   }
 
   /**
