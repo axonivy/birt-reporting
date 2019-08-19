@@ -50,19 +50,6 @@ public class BirtProcessElementUiInformation implements IProcessElementUiInforma
   @Override
   public String getShortName(String processElementClassName, Locale locale)
   {
-    if (processElementClassName.equals(CreateReportDialog.ID))
-    {
-      return CreateReportDialog.NAME;
-    }
-    else if (processElementClassName.equals(CreateReportXmlDialog.ID))
-    {
-      return CreateReportXmlDialog.NAME;
-    }
-    else if (processElementClassName.equals(CreateDynamicReportDialog.ID))
-    {
-      return CreateDynamicReportDialog.NAME;
-    }
-    return null;
+    return getName(processElementClassName, locale);
   }
-
 }
