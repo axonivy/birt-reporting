@@ -2,6 +2,7 @@ package ch.ivyteam.ivy.extension.birt;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,50 +32,42 @@ public class IvyBirtUtils
   private static final String BIRT_ENGINE_HOME = "engineHome";
   private static final String DESING_REPOSITORY = "designRepository";
 
-  /* Extension properties. File located in configuration/extensions/birt.properties */
-  private static Properties birtProperties;
+  private static final Properties birtProperties = new Properties();
+
+  static
+  {
+    File birtPropsFile = new File(PROPERTIES_FILE_LOCATION);
+    if (birtPropsFile.exists())
+    {
+      try (InputStream is = new FileInputStream(birtPropsFile))
+      {
+        birtProperties.load(is);
+      }
+      catch (IOException ex)
+      {
+        LOGGER.error("could not load " + PROPERTIES_FILE_LOCATION, ex);
+      }
+    }
+  }
   
   private IvyBirtUtils()
   {
   }
   
   /**
-   * Load BIRT properties file for Ivy Extension
-   * @return properties
-   * @throws Exception 
-   */
-  private static Properties getBirtProperties() throws Exception
-  {
-    if (birtProperties == null)
-    {
-      birtProperties = new Properties();
-      File birtPropsFile = new File(PROPERTIES_FILE_LOCATION);
-      if (birtPropsFile.exists())
-      {
-        try (InputStream is = new FileInputStream(birtPropsFile))
-        {
-          birtProperties.load(is);
-        }
-      }
-    }
-    return birtProperties;
-  }
-
-  /**
    * Load the engine home property
    * @return path to the report engine home defined in the properties file
-   * @throws Exception if no engine home property is set
    */
-  public static String getEngineHome() throws Exception
+  public static String getEngineHome()
   {
-    String engineHome = getBirtProperties().getProperty(BIRT_ENGINE_HOME, "lib/birtRuntime");
+    String engineHome = birtProperties.getProperty(BIRT_ENGINE_HOME, "lib/birtRuntime");
     LOGGER.info("Birt Engine Home is located on: " + engineHome);
     return engineHome;
   }
   
   public static String getDesignRepository() throws Exception
   {
-    return getBirtProperties().getProperty(DESING_REPOSITORY);
+    return birtProperties.getProperty(DESING_REPOSITORY);
   }
 
   public static Map<String, String> getDatabaseConnectionPropertiesMap(final String databaseName) throws Exception
