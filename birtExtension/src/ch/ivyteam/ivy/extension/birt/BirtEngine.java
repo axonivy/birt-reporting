@@ -61,7 +61,7 @@ public class BirtEngine implements IServerExtension
     System.setSecurityManager(ivySecurityManager);
   }
 
-  private void startReportEngine() throws Exception
+  private void startReportEngine()
   {
     if (Advisor.getAdvisor().isDesigner())
     {
@@ -73,7 +73,7 @@ public class BirtEngine implements IServerExtension
     }
   }
 
-  private void startDesignEngine() throws Exception
+  private void startDesignEngine()
   {
     if (Advisor.getAdvisor().isDesigner())
     {

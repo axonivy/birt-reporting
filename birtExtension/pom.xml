@@ -7,6 +7,7 @@
 	<artifactId>ch.ivyteam.ivy.extension.birt</artifactId>
 	<version>7.4.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
+	<name>birt-reporting</name>
 
 	<properties>
 		<tycho.version>1.4.0</tycho.version>

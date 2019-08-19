@@ -73,9 +73,9 @@ public class IvyBirtReportService
       String reportDesignPath = getReportDesign(reportDesign);
       generateReport(engine.openReportDesign(reportDesignPath), outputFile, format, parameters, xmlData);
     }
-    catch (EngineException e)
+    catch (EngineException ex)
     {
-      Ivy.log().error(e);
+      Ivy.log().error("Could not generate single report.", ex);
     }
   }
 
@@ -92,9 +92,9 @@ public class IvyBirtReportService
         Ivy.log().error("Dynamic Report class instance is null. Please check your dynamic report class. Report can not be created");
       }
     }
-    catch (EngineException e)
+    catch (EngineException ex)
     {
-      Ivy.log().error(e);
+      Ivy.log().error("Could not generate reporty.", ex);
     }
   }
 
@@ -127,7 +127,7 @@ public class IvyBirtReportService
 
       RenderOption options = new RenderOption();
       options.setOutputFormat(format.getName());
-      if (format.equals(OutputFormat.HTML))
+      if (format == OutputFormat.HTML)
       {
         options = new IvyHtmlRenderOptions(outputFile, options);
       }
@@ -140,21 +140,24 @@ public class IvyBirtReportService
       fos.close();
       Ivy.log().info("Report was successfully created: " + outputFile.getAbsolutePath());
     }
-    catch (BirtException e)
+    catch (BirtException ex)
     {
-      Ivy.log().error(e);
-      throw new RuntimeException("Could not generate the report", e);
+      logAndThrow("Could not generate the report", ex);      
     }
-    catch (FileNotFoundException e)
+    catch (FileNotFoundException ex)
     {
-      Ivy.log().error(e);
-      throw new RuntimeException("Could not found result file", e);
+      logAndThrow("Could not found result file", ex);
     }
-    catch (IOException e)
+    catch (IOException ex)
     {
-      Ivy.log().error(e);
-      throw new RuntimeException("Could not close Output Stream", e);
+      logAndThrow("Could not close Output Stream", ex);
     }
+  }
+  
+  private static void logAndThrow(String message, Exception ex)
+  {
+    Ivy.log().error(message, ex);
+    throw new RuntimeException(message, ex);
   }
 
   @SuppressWarnings("unchecked")
