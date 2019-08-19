@@ -32,7 +32,10 @@ public class BirtProcessElements implements IExtensibleStandardProcessElementExt
     {
       return createActivityBpmnIcon(iconFactory, CreateDynamicReportDialog.ICON);
     }
-    return null;
+    else
+    {
+      return null;
+    }
   }
 
   private Icon createActivityBpmnIcon(IBpmnIconFactory iconFactory, String icon)
