@@ -14,15 +14,15 @@ public class BirtProcessElementUiInformation implements IProcessElementUiInforma
   @Override
   public String getDescription(String processElementClassName, Locale locale)
   {
-    if (processElementClassName.equals(CreateReportDialog.ID))
+    if (CreateReportDialog.ID.equals(processElementClassName))
     {
       return CreateReportDialog.DESCRIPTION;
     }
-    else if (processElementClassName.equals(CreateReportXmlDialog.ID))
+    else if (CreateReportXmlDialog.ID.equals(processElementClassName))
     {
       return CreateReportXmlDialog.DESCRIPTION;
     }
-    else if (processElementClassName.equals(CreateDynamicReportDialog.ID))
+    else if (CreateDynamicReportDialog.ID.equals(processElementClassName))
     {
       return CreateDynamicReportDialog.DESCRIPTION;
     }
@@ -32,15 +32,15 @@ public class BirtProcessElementUiInformation implements IProcessElementUiInforma
   @Override
   public String getName(String processElementClassName, Locale locale)
   {
-    if (processElementClassName.equals(CreateReportDialog.ID))
+    if (CreateReportDialog.ID.equals(processElementClassName))
     {
       return CreateReportDialog.NAME;
     }
-    else if (processElementClassName.equals(CreateReportXmlDialog.ID))
+    else if (CreateReportXmlDialog.ID.equals(processElementClassName))
     {
       return CreateReportXmlDialog.NAME;
     }
-    else if (processElementClassName.equals(CreateDynamicReportDialog.ID))
+    else if (CreateDynamicReportDialog.ID.equals(processElementClassName))
     {
       return CreateDynamicReportDialog.NAME;
     }
