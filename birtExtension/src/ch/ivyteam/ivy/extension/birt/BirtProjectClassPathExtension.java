@@ -1,6 +1,7 @@
 package ch.ivyteam.ivy.extension.birt;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.Path;
@@ -21,13 +22,13 @@ public class BirtProjectClassPathExtension implements IIvyProjectClassPathExtens
   @Override
   public List<String> getClassLoaderContributingBundles()
   {
-    return Arrays.asList(BIRT_BUNDLE_ID);
+    return Collections.singletonList(BIRT_BUNDLE_ID);
   }
 
   @Override
   public List<String> getCompileClassPathContributingBundles()
   {
-    return Arrays.asList(BIRT_BUNDLE_ID);
+    return Collections.singletonList(BIRT_BUNDLE_ID);
   }
 
   @Override

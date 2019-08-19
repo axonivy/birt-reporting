@@ -1,7 +1,6 @@
 package ch.ivyteam.ivy.extension.birt.dynreport;
 
 import java.util.Locale;
-import java.util.concurrent.Callable;
 
 import org.apache.log4j.Logger;
 import org.eclipse.birt.report.model.api.ElementFactory;
@@ -97,14 +96,7 @@ public abstract class AbstractDynamicReport implements IDynamicReport
     try
     {
       EmbeddedImage image = StructureFactory.createEmbeddedImage();
-      byte[] imageData = SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<byte[]>()
-        {
-          @Override
-          public byte[] call() throws Exception
-          {
-            return Ivy.cms().findContentObjectValue(path, Locale.GERMAN).getContentAsByteArray();
-          }
-        });
+      byte[] imageData = SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> Ivy.cms().findContentObjectValue(path, Locale.GERMAN).getContentAsByteArray());
       image.setData(imageData);
       image.setName(imageName);
       getReportDesign().addImage(image);

@@ -27,7 +27,7 @@ public class BirtProcessElements implements IExtensibleStandardProcessElementExt
   @Override
   public Icon createBpmnIcon(IBpmnIconFactory iconFactory, String iconName)
   {
-    if (iconName.equals(CreateReportDialog.ICON) || iconName.equals(CreateReportXmlDialog.ICON))
+    if (CreateReportDialog.ICON.equals(iconName) || CreateReportXmlDialog.ICON.equals(iconName))
     {
       URL iconUrl = getClass().getClassLoader().getResource(CreateReportDialog.ICON + ".png");
       if (iconUrl != null)
