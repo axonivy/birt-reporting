@@ -65,7 +65,7 @@ public class IvyBirtUtils
     return engineHome;
   }
   
-  public static String getDesignRepository() throws Exception
+  public static String getDesignRepository()
   {
     return birtProperties.getProperty(DESING_REPOSITORY);
   }
