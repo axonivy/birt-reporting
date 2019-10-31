@@ -168,7 +168,7 @@
 					<iarExcludes>
 						<iarExclude>birt-runtime-osgi*.zip</iarExclude>
 					</iarExcludes>
-					<ivyVersion>7.4.1</ivyVersion>
+					<ivyVersion>8.0.0</ivyVersion>
 				</configuration>
 			</plugin>
 
