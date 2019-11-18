@@ -13,6 +13,8 @@ The installation procedure is exactly the same for Axon.ivy Designer and Engine.
 
 ### Versions
 
+**Since ivy 8.0 not supported anymore. Use doc-factory to create reports.**
+
 |Axon.ivy |Birt Extension |Birt Runtime |Engine Home |
 |---------|---------------|-------------|------------|
 |>=7.4    |[7.4](https://github.com/ivy-supplements/birt-reporting/releases/latest) |[4.8.0](https://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4.8.0-201806261756/birt-runtime-osgi-4.8.0-20180626.zip) |`engineHome=system/lib/birtRuntime/birt-runtime-osgi-4_8_0/ReportEngine/platform` |
