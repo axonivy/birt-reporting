@@ -17,7 +17,7 @@ pipeline {
         script {
           maven cmd: 'clean verify sonar:sonar ' +
             '-Divy.engine.list.url=http://zugprojenkins/job/ivy-core_product/job/master/lastSuccessfulBuild/ ' +
-            '-Dsonar.host.url=http://zugprosonar ' +
+            '-Dsonar.host.url=https://sonar.ivyteam.io ' +
             '-Dmaven.test.failure.ignore=true '
         }
         archiveArtifacts '*/target/*.jar'
