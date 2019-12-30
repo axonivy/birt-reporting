@@ -16,7 +16,7 @@ pipeline {
       steps {
         script {
           maven cmd: 'clean verify sonar:sonar ' +
-            '-Divy.engine.list.url=http://zugprojenkins/job/ivy-core_product/job/master/lastSuccessfulBuild/ ' +
+            '-Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/master/lastSuccessfulBuild/ ' +
             '-Dsonar.host.url=https://sonar.ivyteam.io ' +
             '-Dmaven.test.failure.ignore=true '
         }
