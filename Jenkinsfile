@@ -15,9 +15,8 @@ pipeline {
     stage('build') {
       steps {
         script {
-          maven cmd: 'clean verify sonar:sonar ' +
+          maven cmd: 'clean verify ' +
             '-Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/master/lastSuccessfulBuild/ ' +
-            '-Dsonar.host.url=https://sonar.ivyteam.io ' +
             '-Dmaven.test.failure.ignore=true '
         }
         archiveArtifacts '*/target/*.jar'
