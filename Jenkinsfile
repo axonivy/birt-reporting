@@ -16,7 +16,7 @@ pipeline {
       steps {
         script {
           maven cmd: 'clean verify ' +
-            '-Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/master/lastSuccessfulBuild/ ' +
+            '-Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/release%252F8.0/lastSuccessfulBuild/ ' +
             '-Dmaven.test.failure.ignore=true '
         }
         archiveArtifacts '*/target/*.jar'
