@@ -2,16 +2,16 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Birt Extension
 Bundle-SymbolicName: ch.ivyteam.ivy.extension.birt;singleton:=true
-Bundle-Version: 7.4.1.qualifier
+Bundle-Version: 8.0.0.qualifier
 Bundle-Vendor: AXON Ivy AG
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Require-Bundle: ch.ivyteam.ivy.server;bundle-version="7.4.1",
- ch.ivyteam.db;bundle-version="7.4.1",
+Require-Bundle: ch.ivyteam.ivy.server;bundle-version="8.0.0",
+ ch.ivyteam.db;bundle-version="8.0.0",
  org.eclipse.jdt.core;bundle-version="3.18.0",
  org.eclipse.core.runtime;bundle-version="3.15.0",
- ch.ivyteam.base;bundle-version="7.4.1",
- ch.ivyteam.util;bundle-version="7.4.1",
- ch.ivyteam.ivy.designer.process.ui;bundle-version="7.4.1";resolution:=optional
+ ch.ivyteam.base;bundle-version="8.0.0",
+ ch.ivyteam.util;bundle-version="8.0.0",
+ ch.ivyteam.ivy.designer.process.ui;bundle-version="8.0.0";resolution:=optional
 Bundle-ClassPath: .,
  lib/chartengineapi.jar,
  lib/chartexamplescoreapi.jar,
