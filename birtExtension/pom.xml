@@ -18,7 +18,7 @@
 		<repository>
 			<id>ivy.works.p2</id>
 			<layout>p2</layout>
-			<url>https://download.axonivy.rocks/p2/nightly/</url>
+			<url>https://download.axonivy.rocks/p2/lts-8.0/</url>
 		</repository>
 	</repositories>
 
