@@ -108,7 +108,7 @@
 						<configuration>
 							<target unless="birt.rt.zip.present">
 								<get
-									src="http://blob.axonivy.works/build/birt-runtime-osgi-4_8_0.zip"
+									src="https://archive.nas.ivyteam.io/zugpronas/backup-blob-data-03-01-2024/build/birt-runtime-osgi-4_8_0.zip"
 									dest="${birt.rt.zip}" />
 							</target>
 						</configuration>
