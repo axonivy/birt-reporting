@@ -16,9 +16,9 @@
 
 	<repositories>
 		<repository>
-			<id>ivy.works.p2</id>
+			<id>p2.ivyteam.ch</id>
 			<layout>p2</layout>
-			<url>https://p2.ivyteam.ch/p2/lts-8.0/</url>
+			<url>https://p2.ivyteam.ch/p2/8.0/</url>
 		</repository>
 	</repositories>
 
